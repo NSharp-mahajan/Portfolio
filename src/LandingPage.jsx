@@ -8,6 +8,7 @@ import image3 from './assets/images/image3.jpg'
 import image4 from './assets/images/image4.jpg'
 import image5 from './assets/images/image5.jpg'
 import image6 from './assets/images/image6.jpg'
+import backgroundImage from './assets/images/Background.png'
 
 const collageImages = [
   image1,
@@ -55,7 +56,13 @@ const LandingPage = () => {
   // Show next page
   if (showNextPage) {
     return (
-      <div className="next-page">
+      <div 
+        className="next-page"
+        style={{
+          backgroundImage: `url(${backgroundImage})`
+        }}
+      >
+        <div className="next-page-overlay"></div>
         {/* Blank page - ready for you to build one by one */}
       </div>
     )
