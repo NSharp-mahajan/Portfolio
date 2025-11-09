@@ -52,13 +52,11 @@ const LandingPage = () => {
     }
   }, [showLoading])
 
-  // Show next page (you'll create this component)
+  // Show next page
   if (showNextPage) {
     return (
       <div className="next-page">
-        <h1>Next Page</h1>
-        <p>This is where your next page content will go</p>
-        {/* You'll replace this with your actual next page component */}
+        {/* Blank page - ready for you to build one by one */}
       </div>
     )
   }

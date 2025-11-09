@@ -33,18 +33,21 @@
   color: rgba(255, 255, 255, 0.92);
   background-color: #04060d;
   min-height: 100vh;
+  width: 100vw;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .hero {
   position: relative;
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 1.5rem;
+  padding: 0;
   overflow: hidden;
   isolation: isolate;
   animation: heroFadeIn 1.4s ease-out forwards;
@@ -54,21 +57,28 @@
 .hero-background {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   z-index: -2;
 }
 
 .collage {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
   filter: blur(3px) saturate(110%);
   opacity: 0.85;
-  width: 100%;
-  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .collage-tile {
@@ -91,7 +101,8 @@
       rgba(4, 7, 18, 0.6) 45%,
       rgba(4, 7, 18, 0.8) 100%
     ),
-    linear-gradient(180deg, rgba(6, 10, 22, 0.5) 0%, rgba(4, 6, 13, 0.8) 100%);
+    linear-gradient(180deg, rgba(6, 10, 22, 0.5) 0%, rgba(4, 6, 13, 0.8) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
   z-index: -1;
 }
 
@@ -105,13 +116,14 @@
   justify-content: center;
   gap: 0.8rem;
   padding: 0 clamp(1.5rem, 6vw, 4rem);
+  width: 100%;
 }
 
 .hero-title {
   font-family: 'Cinzel', 'Playfair Display', serif;
   font-size: clamp(3.5rem, 10vw, 7rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 4px;
   text-transform: none;
   background: linear-gradient(135deg, #FFC107 0%, #FFA000 50%, #FFC107 100%);
   -webkit-background-clip: text;
@@ -146,8 +158,7 @@
           drop-shadow(0 0 6px rgba(255, 160, 0, 0.3))
           drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   opacity: 0;
-  animation: titleReveal 1.6s ease-out forwards;
-  animation-delay: 0.7s;
+  animation: fadeIn 2s ease 1.5s forwards;
   letter-spacing: 0.04em;
   text-transform: none;
   font-weight: 700;
@@ -590,6 +601,12 @@
   }
 }
 
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes arrowDrop {
   0% {
     opacity: 0;
@@ -743,5 +760,17 @@
   .scroll-indicator span {
     animation: none;
   }
+}
+
+/* ============================================
+   NEXT PAGE - Blank page ready for building
+   ============================================ */
+
+.next-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #02040a;
 }
 
