@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './LandingPage.css'
 import CursorEffect from './CursorEffect'
 import {
@@ -46,6 +47,7 @@ const floatDurations = ['4s', '5s', '6s', '4.5s', '5.5s', '4.2s', '5.2s']
 
 
 const LandingPage = () => {
+  const navigate = useNavigate()
   const [showLoading, setShowLoading] = useState(false)
   const [progress, setProgress] = useState(0)
   const [showNextPage, setShowNextPage] = useState(false)
@@ -80,9 +82,13 @@ const LandingPage = () => {
   }, [showLoading])
 
   const handleIconClick = (iconId) => {
-    // Navigation will be implemented when pages are created
-    console.log(`Navigate to ${iconId} page`)
-    // Example: window.location.href = `/${iconId}` or use React Router
+    if (iconId === 'contact') {
+      navigate('/contact')
+    }
+    // Add other page navigations here as you create them
+    // else if (iconId === 'projects') {
+    //   navigate('/projects')
+    // }
   }
 
   // Render full content with icons for next page
