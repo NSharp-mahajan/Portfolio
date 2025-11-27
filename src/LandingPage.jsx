@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import './LandingPage.css'
+import CursorEffect from './CursorEffect'
+import {
+  UserRound,
+  Mail,
+  Folder,
+  BriefcaseBusiness,
+  Trophy,
+  Sparkles,
+  FileText
+} from 'lucide-react'
 
-// Import your local images
 import image1 from './assets/images/image1.jpg'
 import image2 from './assets/images/image2.jpg'
 import image3 from './assets/images/image3.jpg'
 import image4 from './assets/images/image4.jpg'
 import image5 from './assets/images/image5.jpg'
 import image6 from './assets/images/image6.jpg'
+import image7 from './assets/images/image7.jpg'
+import image8 from './assets/images/image8.jpg'
 import backgroundImage from './assets/images/Background.png'
 
 const collageImages = [
@@ -16,8 +27,23 @@ const collageImages = [
   image3,
   image4,
   image5,
-  image6
+  image6,
+  image7,
+  image8
 ]
+
+const floatingIcons = [
+  { id: 'contact', label: 'Contact', Icon: Mail },
+  { id: 'projects', label: 'Projects', Icon: Folder },
+  { id: 'freelance', label: 'Freelance Service', Icon: BriefcaseBusiness },
+  { id: 'achievements', label: 'Achievements', Icon: Trophy },
+  { id: 'resume', label: 'Resume', Icon: FileText },
+  { id: 'skills', label: 'Skills', Icon: Sparkles },
+  { id: 'about', label: 'About Me', Icon: UserRound }
+]
+
+const floatDurations = ['4s', '5s', '6s', '4.5s', '5.5s', '4.2s', '5.2s']
+
 
 const LandingPage = () => {
   const [showLoading, setShowLoading] = useState(false)
@@ -53,23 +79,98 @@ const LandingPage = () => {
     }
   }, [showLoading])
 
+  const handleIconClick = (iconId) => {
+    // Navigation will be implemented when pages are created
+    console.log(`Navigate to ${iconId} page`)
+    // Example: window.location.href = `/${iconId}` or use React Router
+  }
+
+  // Render full content with icons for next page
+  const renderHeroContent = () => (
+    <div className="hero-content">
+      <div className="hero-title" id="portfolio-title">
+        <span className="hero-title-line">THE</span>
+        <span className="hero-title-line">DIGITAL</span>
+        <span className="hero-title-line">VISIONARY</span>
+      </div>
+
+      <div className="floating-icons">
+        <div className="floating-icons-inner">
+          {floatingIcons.map((icon, index) => {
+            const IconGraphic = icon.Icon
+            const angle = index * (360 / floatingIcons.length)
+            const duration = floatDurations[index % floatDurations.length]
+            return (
+              <div
+                key={icon.id}
+                className="floating-icon"
+                style={{
+                  '--angle': `${angle}deg`,
+                  '--float-duration': duration
+                }}
+                aria-label={icon.label}
+                onClick={() => handleIconClick(icon.id)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    handleIconClick(icon.id)
+                  }
+                }}
+              >
+                <div className="icon-symbol">
+                  <IconGraphic
+                    className="icon-graphic"
+                    strokeWidth={2.5}
+                    color="#ffffff"
+                    size={32}
+                  />
+                </div>
+                <span className="icon-label">{icon.label}</span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+
   // Show next page
   if (showNextPage) {
     return (
-      <div 
-        className="next-page"
-        style={{
-          backgroundImage: `url(${backgroundImage})`
-        }}
-      >
-        <div className="next-page-overlay"></div>
-        {/* Blank page - ready for you to build one by one */}
-      </div>
+      <>
+        <CursorEffect />
+        <div 
+          className="next-page"
+          style={{
+            backgroundImage: `url(${backgroundImage})`
+          }}
+        >
+          <div className="next-page-overlay"></div>
+          <div className="next-page-content">
+            {renderHeroContent()}
+          </div>
+          
+          <div className="profile-badge">
+            <div className="profile-badge-ring">
+              <span>NM</span>
+            </div>
+            <div className="profile-tooltip">Natansh Mahajan</div>
+          </div>
+
+          <button className="login-button">Login</button>
+          
+          {/* Blank page - ready for you to build one by one */}
+        </div>
+      </>
     )
   }
 
   return (
-    <div className="landing-page">
+    <>
+      <CursorEffect />
+      <div className="landing-page">
       {/* Loading bar appears on the landing page */}
       {showLoading && (
         <div className="loading-bar-container">
@@ -77,7 +178,7 @@ const LandingPage = () => {
         </div>
       )}
 
-      <section className="hero" aria-labelledby="portfolio-title">
+      <section className="hero">
         <div className="hero-background" aria-hidden="true">
           <div className="collage">
             {collageImages.map((url, index) => (
@@ -90,20 +191,19 @@ const LandingPage = () => {
           </div>
           <div className="hero-overlay" />
         </div>
-
-        <div className="hero-content">
-          <h1 id="portfolio-title" className="hero-title">
-            Natansh Mahajan
-          </h1>
-          <p className="hero-subtitle">
-            Welcome to my portfolio
-          </p>
-          <div className="scroll-indicator" aria-hidden="true">
-            <span />
-          </div>
-        </div>
+        <div className="hero-veil" aria-hidden="true" />
       </section>
+
+      <div className="profile-badge">
+        <div className="profile-badge-ring">
+          <span>NM</span>
+        </div>
+        <div className="profile-tooltip">Natansh Mahajan</div>
+      </div>
+
+      <button className="login-button">Login</button>
     </div>
+    </>
   )
 }
 
