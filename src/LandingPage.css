@@ -197,9 +197,9 @@
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.45);
-  border: 2px solid rgba(250, 204, 21, 0.5);
-  box-shadow: 0 0 8px rgba(250, 204, 21, 0.4),
-    0 0 15px rgba(250, 204, 21, 0.3);
+  border: 2px solid rgba(250, 204, 21, 0.3);
+  box-shadow: 0 0 4px rgba(250, 204, 21, 0.2),
+    0 0 8px rgba(250, 204, 21, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -216,6 +216,19 @@
     scale(var(--icon-scale));
   mix-blend-mode: screen;
   cursor: pointer;
+  z-index: 1;
+}
+
+.floating-icon::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.25) 0%, rgba(255, 193, 7, 0.1) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .floating-icon::after {
@@ -223,9 +236,10 @@
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 1px solid rgba(250, 204, 21, 0.25);
-  opacity: 0.6;
+  border: 1px solid rgba(250, 204, 21, 0.15);
+  opacity: 0.4;
   filter: blur(2px);
+  transition: opacity 0.35s ease, border-color 0.35s ease;
 }
 
 .floating-icon:nth-child(even) {
@@ -236,10 +250,17 @@
 .floating-icon:hover {
   /* Keep the orbital transform, only enhance visual effects */
   --icon-scale: 1.08;
-  box-shadow: 0 0 22px rgba(255, 215, 0, 0.55),
-    0 0 40px rgba(255, 215, 0, 0.35),
-    0 0 60px rgba(255, 215, 0, 0.2);
-  border-color: rgba(250, 204, 21, 0.8);
+  border-color: rgba(255, 193, 7, 0.6);
+  z-index: 10;
+}
+
+.floating-icon:hover::before {
+  opacity: 1;
+}
+
+.floating-icon:hover::after {
+  opacity: 0.8;
+  border-color: rgba(255, 193, 7, 0.4);
 }
 
 .floating-icon:active {
@@ -261,25 +282,39 @@
   width: 34px;
   height: 34px;
   stroke: #ffffff;
-  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+  transition: filter 0.35s ease;
+}
+
+.floating-icon:hover .icon-symbol .icon-graphic {
+  filter: drop-shadow(0 0 6px rgba(255, 193, 7, 0.5));
 }
 
 .icon-label {
   position: absolute;
-  bottom: -1.4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: rgba(250, 204, 21, 0.82);
-  font-weight: 500;
+  left: calc(100% + 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(40, 40, 40, 0.95);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  white-space: nowrap;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: translateY(-50%) translateX(-8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
 }
 
 .floating-icon:hover .icon-label {
   opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .profile-badge {
