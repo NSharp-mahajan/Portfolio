@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './AboutPage.css'
 import CursorEffect from './CursorEffect'
+import aboutBackground from './assets/images/About.png'
+import profileImage from './assets/images/image5.jpg'
 import {
   ArrowLeft,
   Code,
@@ -137,59 +139,93 @@ const AboutPage = () => {
 
   const milestones = [
     {
-      year: '2018',
-      title: '10th Completed',
-      description: 'Completed 10th standard with excellence',
-      position: { left: '5%', top: '10%' },
+      id: 'school',
+      title: 'Little Flower Convent School, Dhariwal',
+      date: 'School Years',
+      description: 'Built the foundation of discipline and curiosity.',
+      position: { left: '9%', top: '22%' },
       icon: Star
     },
     {
-      year: '2020',
-      title: '12th Completed (93%)',
-      description: 'Achieved 93% in 12th standard',
-      position: { left: '15%', top: '25%' },
+      id: 'chitkara',
+      title: 'Joined Chitkara University (CSE — AI & ML)',
+      date: '2024',
+      description: 'Started my technical journey.',
+      position: { left: '20%', top: '30%' },
       icon: Award
     },
     {
-      year: '2020',
-      title: 'Started Coding',
-      description: 'Began my coding journey',
-      position: { left: '25%', top: '40%' },
-      icon: Code
-    },
-    {
-      year: '2021',
-      title: 'First Project',
-      description: 'Built my first web application',
-      position: { left: '35%', top: '55%' },
-      icon: GitBranch
-    },
-    {
-      year: '2021',
-      title: 'First Hackathon',
-      description: 'Participated in my first hackathon',
-      position: { left: '45%', top: '70%' },
+      id: 'first-hackathon',
+      title: 'First Hackathon — 2nd Semester',
+      date: 'Early University',
+      description: 'Discovered innovation and collaboration.',
+      position: { left: '32%', top: '40%' },
       icon: Trophy
     },
     {
-      year: '2022',
-      title: 'Joined Chitkara University',
-      description: 'Started my engineering journey',
-      position: { left: '55%', top: '85%' }
+      id: 'apple-community',
+      title: 'Apple Student Community',
+      date: 'Sep 2024 – Feb 2025',
+      description: 'Content creator and storyteller.',
+      position: { left: '44%', top: '50%' },
+      icon: Zap
     },
     {
-      year: '2023',
-      title: 'Technical Team Lead',
-      description: 'Became Technical Team Lead',
-      position: { left: '70%', top: '75%' },
+      id: 'national-hackathon',
+      title: 'National Hackathon Winner',
+      date: 'HackWithIndia — 3rd Semester',
+      description: 'Won a national-level hackathon.',
+      position: { left: '56%', top: '60%' },
+      icon: Trophy
+    },
+    {
+      id: 'multi-projects',
+      title: 'Projects in Web, AI & Design',
+      date: 'Ongoing',
+      description: 'Built multiple projects to sharpen my skills.',
+      position: { left: '67%', top: '52%' },
+      icon: Code
+    },
+    {
+      id: 'first-freelance',
+      title: 'First Freelancing Project',
+      date: '2nd Year',
+      description: 'Delivered my first paid project.',
+      position: { left: '77%', top: '42%' },
+      icon: GitBranch
+    },
+    {
+      id: 'ten-hackathons',
+      title: '10+ Hackathons Across India',
+      date: 'University Journey',
+      description: 'Competed, learned, and collaborated nationwide.',
+      position: { left: '86%', top: '34%' },
+      icon: Rocket
+    },
+    {
+      id: 'ms-finalist',
+      title: 'Microsoft Hackathon Finalist',
+      date: 'Gurgaon',
+      description: 'Reached the finals at a major tech hackathon.',
+      position: { left: '93%', top: '26%' },
       icon: Target
     },
     {
-      year: '2024',
-      title: 'Major Projects',
-      description: 'PathPilot, Internomics, LumaOS',
-      position: { left: '85%', top: '60%' },
-      icon: Rocket
+      id: 'tech-head',
+      title: 'Technical Head — Design Thinking Society',
+      date: 'Leadership',
+      description: 'Guiding teams and shaping innovative ideas.',
+      position: { left: '97%', top: '20%' },
+      icon: Star
+    },
+    {
+      id: 'more-coming',
+      title: 'More milestones loading…',
+      date: '',
+      description: 'This is just the beginning of the journey.',
+      position: { left: '50%', top: '88%' },
+      icon: Rocket,
+      isFinal: true
     }
   ]
 
@@ -238,26 +274,19 @@ const AboutPage = () => {
         </div>
 
         {/* HERO SECTION */}
-        <section className="about-hero" onMouseMove={handleHeroMouseMove}>
+        <section
+          className="about-hero"
+          onMouseMove={handleHeroMouseMove}
+          style={{
+            backgroundImage: `url(${aboutBackground})`
+          }}
+        >
           <div className="hero-content-wrapper">
             <div className="profile-image-container">
               <div
-                className="hero-orbit-rings"
-                style={{
-                  '--parallax-x': heroParallax.x,
-                  '--parallax-y': heroParallax.y
-                }}
-              >
-                <div className="hero-ring" />
-                <div className="hero-ring" />
-                <div className="hero-ring" />
-              </div>
-              <div className="profile-glow"></div>
-              <div className="profile-image">
-                <div className="profile-placeholder">
-                  <span>NM</span>
-                </div>
-              </div>
+                className="profile-image"
+                style={{ backgroundImage: `url(${profileImage})` }}
+              ></div>
             </div>
 
             <h1 className="hero-name">
@@ -277,14 +306,31 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* JOURNEY TIMELINE */}
+        {/* JOURNEY TIMELINE – THE GOLDEN PATHWAY */}
         <section className="timeline-section" ref={timelineRef}>
-          <h2 className="section-title">My Journey</h2>
+          <h2 className="section-title">The Golden Pathway</h2>
+
+          {/* Local starfield / sparks for extra depth */}
+          <div className="timeline-sparks">
+            {Array.from({ length: 24 }).map((_, i) => (
+              <div
+                key={i}
+                className="timeline-spark"
+                style={{
+                  '--tx': `${(i * 41) % 100}%`,
+                  '--ty': `${(i * 19) % 100}%`,
+                  '--delay': `${i * 0.6}s`,
+                  '--duration': `${18 + (i % 8) * 3}s`
+                }}
+              />
+            ))}
+          </div>
+
           <div className="timeline-container">
             <svg className="timeline-path" viewBox="0 0 1000 800" preserveAspectRatio="none">
               <path
                 className="timeline-line"
-                d="M 50 80 Q 150 200, 250 320 T 450 440 T 650 560 T 850 480"
+                d="M 40 120 Q 180 260, 320 380 T 540 520 T 760 460 T 960 200"
                 fill="none"
                 stroke="url(#goldenGradient)"
                 strokeWidth="4"
@@ -305,18 +351,34 @@ const AboutPage = () => {
             <div className="milestones-container">
               {milestones.map((milestone, index) => (
                 <div
-                  key={index}
-                  className="milestone-node"
+                  key={milestone.id || index}
+                  className={`milestone-node ${milestone.isFinal ? 'milestone-final' : ''}`}
                   style={{
                     left: milestone.position.left,
-                    top: milestone.position.top
+                    top: milestone.position.top,
+                    '--index': index
                   }}
                 >
-                  <div className="milestone-dot"></div>
-                  <div className="milestone-popup">
-                    <div className="popup-year">{milestone.year}</div>
-                    <div className="popup-title">{milestone.title}</div>
-                    <div className="popup-description">{milestone.description}</div>
+                  {milestone.icon && (
+                    <div className="milestone-icon-wrapper">
+                      <milestone.icon size={18} strokeWidth={2} />
+                    </div>
+                  )}
+                  <div className="milestone-dot" />
+
+                  <div className="milestone-card">
+                    <div className="milestone-text">
+                      <div className="milestone-title">{milestone.title}</div>
+                      {milestone.date && (
+                        <div className="milestone-date">{milestone.date}</div>
+                      )}
+                      <div className="milestone-description">
+                        {milestone.description}
+                      </div>
+                    </div>
+                    <div className="milestone-image-placeholder">
+                      <span>Image</span>
+                    </div>
                   </div>
                 </div>
               ))}
