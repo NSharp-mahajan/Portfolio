@@ -4,8 +4,11 @@ import './AboutPage.css'
 import CursorEffect from './CursorEffect'
 import aboutBackground from './assets/images/About.png'
 import profileImage from './assets/images/image5.jpg'
+import image6 from './assets/images/image6.jpg'
 import {
   ArrowLeft,
+  ArrowRight,
+  ArrowDown,
   Code,
   Database,
   Globe,
@@ -24,11 +27,169 @@ import {
   Trophy
 } from 'lucide-react'
 
+const ZigZagJourney = ({ items }) => {
+  const rows = []
+  for (let i = 0; i < items.length; i += 2) {
+    rows.push(items.slice(i, i + 2))
+  }
+
+  return (
+    <div className="zigzag-wrapper">
+      {/* Enhanced Background Layers */}
+      <div className="zigzag-overlay" />
+      <div className="zigzag-particles">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={i}
+            className="zigzag-particle"
+            style={{
+              '--delay': `${i * 0.3}s`,
+              '--duration': `${15 + (i % 8) * 2}s`,
+              '--x': `${(i * 47) % 100}%`,
+              '--y': `${(i * 31) % 100}%`
+            }}
+          />
+        ))}
+      </div>
+      <div className="zigzag-vignette" />
+
+      <div className="journey-rows">
+        {rows.map((pair, rowIdx) => {
+          const isEvenRow = rowIdx % 2 === 0
+          const [first, second] = pair
+          const leftItem = isEvenRow ? first : second
+          const rightItem = isEvenRow ? second : first
+          const hasRight = Boolean(rightItem)
+          const isLastRow = rowIdx === rows.length - 1
+
+          return (
+            <React.Fragment key={rowIdx}>
+              <div className={`journey-row ${isEvenRow ? 'row-even' : 'row-odd'}`}>
+                <JourneyCard item={leftItem} index={rowIdx * 2} />
+
+                <div
+                  className={`journey-arrow-horizontal ${hasRight ? '' : 'arrow-hidden'} ${
+                    isEvenRow ? 'arrow-right' : 'arrow-left'
+                  }`}
+                >
+                  <svg viewBox="0 0 400 2" preserveAspectRatio="none" className="arrow-line">
+                    <defs>
+                      <linearGradient id={`arrowGrad-${rowIdx}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#ffd95e" stopOpacity="0.3" />
+                        <stop offset="50%" stopColor="#ffd95e" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#ffd95e" stopOpacity="0.3" />
+                      </linearGradient>
+                      <filter id={`arrowGlow-${rowIdx}`}>
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                        <feMerge>
+                          <feMergeNode in="coloredBlur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+                    <line x1="0" y1="1" x2="380" y2="1" stroke={`url(#arrowGrad-${rowIdx})`} strokeWidth="1.5" filter={`url(#arrowGlow-${rowIdx})`} />
+                  </svg>
+                  <div className="arrow-head">
+                    <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                      <defs>
+                        <linearGradient id={`headGrad-${rowIdx}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#ffd95e" stopOpacity="0.6" />
+                          <stop offset="100%" stopColor="#ffd95e" stopOpacity="1" />
+                        </linearGradient>
+                        <filter id={`headGlow-${rowIdx}`}>
+                          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+                          <feMerge>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
+                          </feMerge>
+                        </filter>
+                      </defs>
+                      <path d="M0 6 L10 0 L10 12 Z" fill={`url(#headGrad-${rowIdx})`} filter={`url(#headGlow-${rowIdx})`} />
+                    </svg>
+                  </div>
+                </div>
+
+                {hasRight ? <JourneyCard item={rightItem} index={rowIdx * 2 + 1} /> : <div className="journey-placeholder" />}
+              </div>
+
+              {!isLastRow && (
+                <div className="journey-arrow-down">
+                  <svg viewBox="0 0 2 60" preserveAspectRatio="none" className="arrow-line-vertical">
+                    <defs>
+                      <linearGradient id={`downGrad-${rowIdx}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#ffd95e" stopOpacity="0.3" />
+                        <stop offset="50%" stopColor="#ffd95e" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#ffd95e" stopOpacity="0.3" />
+                      </linearGradient>
+                      <filter id={`downGlow-${rowIdx}`}>
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                        <feMerge>
+                          <feMergeNode in="coloredBlur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+                    <line x1="1" y1="0" x2="1" y2="50" stroke={`url(#downGrad-${rowIdx})`} strokeWidth="1.5" filter={`url(#downGlow-${rowIdx})`} />
+                  </svg>
+                  <div className="arrow-head-down">
+                    <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
+                      <defs>
+                        <linearGradient id={`downHeadGrad-${rowIdx}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="#ffd95e" stopOpacity="0.6" />
+                          <stop offset="100%" stopColor="#ffd95e" stopOpacity="1" />
+                        </linearGradient>
+                        <filter id={`downHeadGlow-${rowIdx}`}>
+                          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+                          <feMerge>
+                            <feMergeNode in="coloredBlur" />
+                            <feMergeNode in="SourceGraphic" />
+                          </feMerge>
+                        </filter>
+                      </defs>
+                      <path d="M6 0 L12 10 L0 10 Z" fill={`url(#downHeadGrad-${rowIdx})`} filter={`url(#downHeadGlow-${rowIdx})`} />
+                    </svg>
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+const JourneyCard = ({ item, index }) => {
+  if (!item) return null
+  const fallbackLetter = item.title ? item.title.charAt(0) : '•'
+  const imgSrc = item.image || profileImage
+  return (
+    <div className="journey-item milestone-node reveal-item" style={{ '--index': index }}>
+      <div className="journey-node">
+        <div className="journey-image-wrapper">
+          <div
+            className="journey-image"
+            style={{
+              backgroundImage: `url(${imgSrc})`
+            }}
+            aria-hidden="true"
+          >
+            {!item.image && <span className="journey-initial">{fallbackLetter}</span>}
+          </div>
+        </div>
+        <div className="journey-text">
+          <div className="journey-title">{item.title}</div>
+          {item.date && <div className="journey-date">{item.date}</div>}
+          <div className="journey-description">{item.description}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const AboutPage = () => {
   const navigate = useNavigate()
-  const timelineRef = useRef(null)
   const dashboardRef = useRef(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
   const [countersAnimated, setCountersAnimated] = useState(false)
   const [heroParallax, setHeroParallax] = useState({ x: 0, y: 0 })
 
@@ -57,19 +218,6 @@ const AboutPage = () => {
     }
 
     const handleScroll = () => {
-      if (timelineRef.current) {
-        const rect = timelineRef.current.getBoundingClientRect()
-        const scrollTop = window.scrollY || document.documentElement.scrollTop
-        const elementTop = rect.top + scrollTop
-        const elementHeight = rect.height
-        const windowHeight = window.innerHeight
-        const progress = Math.max(
-          0,
-          Math.min(1, (scrollTop + windowHeight - elementTop) / elementHeight)
-        )
-        setScrollProgress(progress)
-      }
-
       // Animate counters when dashboard is in view
       if (dashboardRef.current && !countersAnimated) {
         const rect = dashboardRef.current.getBoundingClientRect()
@@ -137,94 +285,83 @@ const AboutPage = () => {
     setHeroParallax({ x, y })
   }
 
-  const milestones = [
+  const journeyMilestones = [
     {
       id: 'school',
       title: 'Little Flower Convent School, Dhariwal',
       date: 'School Years',
       description: 'Built the foundation of discipline and curiosity.',
-      position: { left: '9%', top: '22%' },
-      icon: Star
+      image: profileImage
     },
     {
       id: 'chitkara',
       title: 'Joined Chitkara University (CSE — AI & ML)',
       date: '2024',
       description: 'Started my technical journey.',
-      position: { left: '20%', top: '30%' },
-      icon: Award
+      image: image6
     },
     {
       id: 'first-hackathon',
       title: 'First Hackathon — 2nd Semester',
       date: 'Early University',
       description: 'Discovered innovation and collaboration.',
-      position: { left: '32%', top: '40%' },
-      icon: Trophy
+      image: profileImage
     },
     {
       id: 'apple-community',
       title: 'Apple Student Community',
       date: 'Sep 2024 – Feb 2025',
       description: 'Content creator and storyteller.',
-      position: { left: '44%', top: '50%' },
-      icon: Zap
+      image: image6
     },
     {
       id: 'national-hackathon',
       title: 'National Hackathon Winner',
       date: 'HackWithIndia — 3rd Semester',
       description: 'Won a national-level hackathon.',
-      position: { left: '56%', top: '60%' },
-      icon: Trophy
+      image: profileImage
     },
     {
       id: 'multi-projects',
       title: 'Projects in Web, AI & Design',
       date: 'Ongoing',
       description: 'Built multiple projects to sharpen my skills.',
-      position: { left: '67%', top: '52%' },
-      icon: Code
+      image: image6
     },
     {
       id: 'first-freelance',
       title: 'First Freelancing Project',
       date: '2nd Year',
       description: 'Delivered my first paid project.',
-      position: { left: '77%', top: '42%' },
-      icon: GitBranch
+      image: profileImage
     },
     {
       id: 'ten-hackathons',
       title: '10+ Hackathons Across India',
       date: 'University Journey',
       description: 'Competed, learned, and collaborated nationwide.',
-      position: { left: '86%', top: '34%' },
-      icon: Rocket
+      image: image6
     },
     {
       id: 'ms-finalist',
       title: 'Microsoft Hackathon Finalist',
       date: 'Gurgaon',
       description: 'Reached the finals at a major tech hackathon.',
-      position: { left: '93%', top: '26%' },
-      icon: Target
+      image: profileImage
     },
     {
       id: 'tech-head',
       title: 'Technical Head — Design Thinking Society',
       date: 'Leadership',
       description: 'Guiding teams and shaping innovative ideas.',
-      position: { left: '97%', top: '20%' },
-      icon: Star
+      image: image6
     },
     {
       id: 'more-coming',
       title: 'More milestones loading…',
       date: '',
       description: 'This is just the beginning of the journey.',
-      position: { left: '50%', top: '88%' },
-      icon: Rocket,
+      image: profileImage,
       isFinal: true
     }
   ]
@@ -307,83 +444,9 @@ const AboutPage = () => {
         </section>
 
         {/* JOURNEY TIMELINE – THE GOLDEN PATHWAY */}
-        <section className="timeline-section" ref={timelineRef}>
+        <section className="timeline-section">
           <h2 className="section-title">The Golden Pathway</h2>
-
-          {/* Local starfield / sparks for extra depth */}
-          <div className="timeline-sparks">
-            {Array.from({ length: 24 }).map((_, i) => (
-              <div
-                key={i}
-                className="timeline-spark"
-                style={{
-                  '--tx': `${(i * 41) % 100}%`,
-                  '--ty': `${(i * 19) % 100}%`,
-                  '--delay': `${i * 0.6}s`,
-                  '--duration': `${18 + (i % 8) * 3}s`
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="timeline-container">
-            <svg className="timeline-path" viewBox="0 0 1000 800" preserveAspectRatio="none">
-              <path
-                className="timeline-line"
-                d="M 40 120 Q 180 260, 320 380 T 540 520 T 760 460 T 960 200"
-                fill="none"
-                stroke="url(#goldenGradient)"
-                strokeWidth="4"
-                style={{
-                  strokeDasharray: 2000,
-                  strokeDashoffset: 2000 * (1 - scrollProgress)
-                }}
-              />
-              <defs>
-                <linearGradient id="goldenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#facc15" stopOpacity="0.3" />
-                  <stop offset="50%" stopColor="#facc15" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#facc15" stopOpacity="0.3" />
-                </linearGradient>
-              </defs>
-            </svg>
-
-            <div className="milestones-container">
-              {milestones.map((milestone, index) => (
-                <div
-                  key={milestone.id || index}
-                  className={`milestone-node ${milestone.isFinal ? 'milestone-final' : ''}`}
-                  style={{
-                    left: milestone.position.left,
-                    top: milestone.position.top,
-                    '--index': index
-                  }}
-                >
-                  {milestone.icon && (
-                    <div className="milestone-icon-wrapper">
-                      <milestone.icon size={18} strokeWidth={2} />
-                    </div>
-                  )}
-                  <div className="milestone-dot" />
-
-                  <div className="milestone-card">
-                    <div className="milestone-text">
-                      <div className="milestone-title">{milestone.title}</div>
-                      {milestone.date && (
-                        <div className="milestone-date">{milestone.date}</div>
-                      )}
-                      <div className="milestone-description">
-                        {milestone.description}
-                      </div>
-                    </div>
-                    <div className="milestone-image-placeholder">
-                      <span>Image</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ZigZagJourney items={journeyMilestones} />
         </section>
 
         {/* CONTRIBUTION DASHBOARD */}
