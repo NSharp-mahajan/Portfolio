@@ -5,6 +5,16 @@ import CursorEffect from './CursorEffect'
 import aboutBackground from './assets/images/About.png'
 import profileImage from './assets/images/image5.jpg'
 import image6 from './assets/images/image6.jpg'
+import schoolImage from './assets/images/School.jpg'
+import chitkaraImage from './assets/images/chitkara.jpeg'
+import imageOne from './assets/images/image1.jpg'
+import appleCommunityImage from './assets/images/image4.jpg'
+import cybercopImage from './assets/images/cybercop.png'
+import hackathonsImage from './assets/images/image2.jpg'
+import projectImage from './assets/images/project.png'
+import msFinaleImage from './assets/images/off.jpeg'
+import techHeadImage from './assets/images/image7.jpg'
+import moreMilestonesImage from './assets/images/image8.jpg'
 import {
   ArrowLeft,
   ArrowRight,
@@ -72,41 +82,8 @@ const ZigZagJourney = ({ items }) => {
                     isEvenRow ? 'arrow-right' : 'arrow-left'
                   }`}
                 >
-                  <svg viewBox="0 0 400 2" preserveAspectRatio="none" className="arrow-line">
-                    <defs>
-                      <linearGradient id={`arrowGrad-${rowIdx}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#ffd95e" stopOpacity="0.3" />
-                        <stop offset="50%" stopColor="#ffd95e" stopOpacity="0.8" />
-                        <stop offset="100%" stopColor="#ffd95e" stopOpacity="0.3" />
-                      </linearGradient>
-                      <filter id={`arrowGlow-${rowIdx}`}>
-                        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-                        <feMerge>
-                          <feMergeNode in="coloredBlur" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    <line x1="0" y1="1" x2="380" y2="1" stroke={`url(#arrowGrad-${rowIdx})`} strokeWidth="1.5" filter={`url(#arrowGlow-${rowIdx})`} />
-                  </svg>
-                  <div className="arrow-head">
-                    <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
-                      <defs>
-                        <linearGradient id={`headGrad-${rowIdx}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stopColor="#ffd95e" stopOpacity="0.6" />
-                          <stop offset="100%" stopColor="#ffd95e" stopOpacity="1" />
-                        </linearGradient>
-                        <filter id={`headGlow-${rowIdx}`}>
-                          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
-                          <feMerge>
-                            <feMergeNode in="coloredBlur" />
-                            <feMergeNode in="SourceGraphic" />
-                          </feMerge>
-                        </filter>
-                      </defs>
-                      <path d="M0 6 L10 0 L10 12 Z" fill={`url(#headGrad-${rowIdx})`} filter={`url(#headGlow-${rowIdx})`} />
-                    </svg>
-                  </div>
+                  <div className="arrow-line" />
+                  <div className="arrow-head" />
                 </div>
 
                 {hasRight ? <JourneyCard item={rightItem} index={rowIdx * 2 + 1} /> : <div className="journey-placeholder" />}
@@ -114,41 +91,8 @@ const ZigZagJourney = ({ items }) => {
 
               {!isLastRow && (
                 <div className="journey-arrow-down">
-                  <svg viewBox="0 0 2 60" preserveAspectRatio="none" className="arrow-line-vertical">
-                    <defs>
-                      <linearGradient id={`downGrad-${rowIdx}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#ffd95e" stopOpacity="0.3" />
-                        <stop offset="50%" stopColor="#ffd95e" stopOpacity="0.8" />
-                        <stop offset="100%" stopColor="#ffd95e" stopOpacity="0.3" />
-                      </linearGradient>
-                      <filter id={`downGlow-${rowIdx}`}>
-                        <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-                        <feMerge>
-                          <feMergeNode in="coloredBlur" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    <line x1="1" y1="0" x2="1" y2="50" stroke={`url(#downGrad-${rowIdx})`} strokeWidth="1.5" filter={`url(#downGlow-${rowIdx})`} />
-                  </svg>
-                  <div className="arrow-head-down">
-                    <svg viewBox="0 0 12 12" preserveAspectRatio="xMidYMid meet">
-                      <defs>
-                        <linearGradient id={`downHeadGrad-${rowIdx}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="#ffd95e" stopOpacity="0.6" />
-                          <stop offset="100%" stopColor="#ffd95e" stopOpacity="1" />
-                        </linearGradient>
-                        <filter id={`downHeadGlow-${rowIdx}`}>
-                          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
-                          <feMerge>
-                            <feMergeNode in="coloredBlur" />
-                            <feMergeNode in="SourceGraphic" />
-                          </feMerge>
-                        </filter>
-                      </defs>
-                      <path d="M6 0 L12 10 L0 10 Z" fill={`url(#downHeadGrad-${rowIdx})`} filter={`url(#downHeadGlow-${rowIdx})`} />
-                    </svg>
-                  </div>
+                  <div className="arrow-line-vertical" />
+                  <div className="arrow-head-down" />
                 </div>
               )}
             </React.Fragment>
@@ -170,7 +114,8 @@ const JourneyCard = ({ item, index }) => {
           <div
             className="journey-image"
             style={{
-              backgroundImage: `url(${imgSrc})`
+              backgroundImage: `url(${imgSrc})`,
+              backgroundSize: item.imageFit || 'cover'
             }}
             aria-hidden="true"
           >
@@ -229,7 +174,7 @@ const AboutPage = () => {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll() // Initial check
     return () => window.removeEventListener('scroll', handleScroll)
   }, [countersAnimated])
@@ -248,7 +193,7 @@ const AboutPage = () => {
           }
         })
       },
-      { threshold: 0.2 }
+      { threshold: 0.1, rootMargin: '150px 0px' }
     )
 
     elements.forEach((el) => observer.observe(el))
@@ -270,7 +215,7 @@ const AboutPage = () => {
           }
         })
       },
-      { threshold: 0.3 }
+      { threshold: 0.15, rootMargin: '180px 0px' }
     )
 
     nodes.forEach((node) => observer.observe(node))
@@ -291,28 +236,28 @@ const AboutPage = () => {
       title: 'Little Flower Convent School, Dhariwal',
       date: 'School Years',
       description: 'Built the foundation of discipline and curiosity.',
-      image: profileImage
+      image: schoolImage
     },
     {
       id: 'chitkara',
       title: 'Joined Chitkara University (CSE — AI & ML)',
       date: '2024',
       description: 'Started my technical journey.',
-      image: image6
+      image: chitkaraImage
     },
     {
       id: 'first-hackathon',
       title: 'First Hackathon — 2nd Semester',
       date: 'Early University',
       description: 'Discovered innovation and collaboration.',
-      image: profileImage
+      image: imageOne
     },
     {
       id: 'apple-community',
       title: 'Apple Student Community',
       date: 'Sep 2024 – Feb 2025',
       description: 'Content creator and storyteller.',
-      image: image6
+      image: appleCommunityImage
     },
     {
       id: 'national-hackathon',
@@ -326,42 +271,43 @@ const AboutPage = () => {
       title: 'Projects in Web, AI & Design',
       date: 'Ongoing',
       description: 'Built multiple projects to sharpen my skills.',
-      image: image6
+      image: cybercopImage,
+      imageFit: 'contain'
     },
     {
       id: 'first-freelance',
       title: 'First Freelancing Project',
       date: '2nd Year',
       description: 'Delivered my first paid project.',
-      image: profileImage
+      image: projectImage
     },
     {
       id: 'ten-hackathons',
       title: '10+ Hackathons Across India',
       date: 'University Journey',
       description: 'Competed, learned, and collaborated nationwide.',
-      image: image6
+      image: hackathonsImage
     },
     {
       id: 'ms-finalist',
       title: 'Microsoft Hackathon Finalist',
       date: 'Gurgaon',
       description: 'Reached the finals at a major tech hackathon.',
-      image: profileImage
+      image: msFinaleImage
     },
     {
       id: 'tech-head',
       title: 'Technical Head — Design Thinking Society',
       date: 'Leadership',
       description: 'Guiding teams and shaping innovative ideas.',
-      image: image6
+      image: techHeadImage
     },
     {
       id: 'more-coming',
       title: 'More milestones loading…',
       date: '',
       description: 'This is just the beginning of the journey.',
-      image: profileImage,
+      image: moreMilestonesImage,
       isFinal: true
     }
   ]

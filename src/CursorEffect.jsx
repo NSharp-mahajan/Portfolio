@@ -3,36 +3,24 @@ import './CursorEffect.css'
 
 const CursorEffect = () => {
   const cursorRef = useRef(null)
-  const cursorDotRef = useRef(null)
-  const [isActive, setIsActive] = useState(true)
   const [isHovering, setIsHovering] = useState(false)
-  const inactivityTimerRef = useRef(null)
   const animationFrameRef = useRef(null)
 
   useEffect(() => {
     const cursor = cursorRef.current
-    const cursorDot = cursorDotRef.current
-
-    if (!cursor || !cursorDot) return
+    if (!cursor) return
 
     let mouseX = 0
     let mouseY = 0
     let cursorX = 0
     let cursorY = 0
-    let dotX = 0
-    let dotY = 0
+    const smoothing = 0.18
 
     const updateCursor = () => {
-      // Smooth cursor movement with easing
-      cursorX += (mouseX - cursorX) * 0.1
-      cursorY += (mouseY - cursorY) * 0.1
-
-      // Faster dot movement for trailing effect
-      dotX += (mouseX - dotX) * 0.3
-      dotY += (mouseY - dotY) * 0.3
+      cursorX += (mouseX - cursorX) * smoothing
+      cursorY += (mouseY - cursorY) * smoothing
 
       cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`
-      cursorDot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0)`
 
       animationFrameRef.current = requestAnimationFrame(updateCursor)
     }
@@ -41,19 +29,6 @@ const CursorEffect = () => {
       mouseX = e.clientX
       mouseY = e.clientY
 
-      // Reset inactivity timer
-      if (inactivityTimerRef.current) {
-        clearTimeout(inactivityTimerRef.current)
-      }
-
-      if (!isActive) {
-        setIsActive(true)
-      }
-
-      // Set inactivity timer
-      inactivityTimerRef.current = setTimeout(() => {
-        setIsActive(false)
-      }, 2000)
     }
 
     const checkHover = (e) => {
@@ -95,25 +70,15 @@ const CursorEffect = () => {
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMoveWithHover)
-      if (inactivityTimerRef.current) {
-        clearTimeout(inactivityTimerRef.current)
-      }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [isActive])
+  }, [])
 
   return (
     <>
-      <div
-        ref={cursorRef}
-        className={`custom-cursor ${isActive ? 'active' : 'inactive'} ${isHovering ? 'hovering' : ''}`}
-      />
-      <div
-        ref={cursorDotRef}
-        className={`custom-cursor-dot ${isActive ? 'active' : 'inactive'}`}
-      />
+      <div ref={cursorRef} className={`custom-cursor ${isHovering ? 'hovering' : ''}`} />
     </>
   )
 }

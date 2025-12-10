@@ -1,5 +1,5 @@
 /* ============================================
-   CUSTOM CURSOR SYSTEM
+   CLEAN CUSTOM CURSOR
    ============================================ */
 
 @media (hover: hover) and (pointer: fine) {
@@ -10,85 +10,50 @@
 
 .custom-cursor {
   position: fixed;
-  width: 16px;
-  height: 16px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.95) 0%, rgba(250, 204, 21, 0.4) 60%, rgba(250, 204, 21, 0) 100%);
+  background: #ffd95e;
   pointer-events: none;
   z-index: 9999;
   transform: translate3d(-50%, -50%, 0);
-  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    height 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s ease,
+  transition:
+    opacity 0.2s ease,
     filter 0.2s ease;
-  box-shadow: 0 0 15px rgba(250, 204, 21, 0.5),
-    0 0 35px rgba(250, 204, 21, 0.3);
-  opacity: 1;
   will-change: transform;
   display: none;
-  mix-blend-mode: screen;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .custom-cursor {
-    display: block;
-  }
-}
-
-.custom-cursor.hovering {
-  width: 32px;
-  height: 32px;
-  filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.65));
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6),
-    0 0 40px rgba(255, 215, 0, 0.4),
-    0 0 60px rgba(255, 215, 0, 0.2);
-}
-
-.custom-cursor.inactive {
-  opacity: 0.25;
-}
-
-.custom-cursor-dot {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.92);
+.custom-cursor::after {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border: 2px solid #ffd95e;
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate3d(-50%, -50%, 0);
-  transition: opacity 0.3s ease,
-    transform 0.1s ease;
-  box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
-  opacity: 1;
-  will-change: transform;
-  display: none;
+  opacity: 0.35;
+  transform: scale(0.7);
+  transition:
+    transform 120ms ease-out,
+    opacity 120ms ease-out;
+  box-shadow:
+    0 0 6px rgba(255, 217, 94, 0.25),
+    0 0 12px rgba(255, 217, 94, 0.18);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .custom-cursor-dot {
+  .custom-cursor {
     display: block;
   }
 }
 
-.custom-cursor-dot.inactive {
-  opacity: 0.2;
+.custom-cursor.hovering::after {
+  opacity: 0.65;
+  transform: scale(1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px), (hover: none) {
   .custom-cursor {
-    width: 14px;
-    height: 14px;
-  }
-
-  .custom-cursor.hovering {
-    width: 26px;
-    height: 26px;
-  }
-
-  .custom-cursor-dot {
-    width: 4px;
-    height: 4px;
+    display: none !important;
   }
 }
 
