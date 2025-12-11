@@ -15,27 +15,7 @@ import projectImage from './assets/images/project.png'
 import msFinaleImage from './assets/images/off.jpeg'
 import techHeadImage from './assets/images/image7.jpg'
 import moreMilestonesImage from './assets/images/image8.jpg'
-import {
-  ArrowLeft,
-  ArrowRight,
-  ArrowDown,
-  Code,
-  Database,
-  Globe,
-  Smartphone,
-  Palette,
-  Zap,
-  Github,
-  Award,
-  Target,
-  Rocket,
-  TrendingUp,
-  Calendar,
-  Clock,
-  GitBranch,
-  Star,
-  Trophy
-} from 'lucide-react'
+import { ArrowLeft, Code, Database, Globe, Smartphone, Palette, Zap, Rocket, Star, GitBranch, Target, GitCommit, Flame, Clock, FolderGit2, Trophy, TrendingUp, Users, Package } from 'lucide-react'
 
 const ZigZagJourney = ({ items }) => {
   const rows = []
@@ -230,6 +210,23 @@ const AboutPage = () => {
     setHeroParallax({ x, y })
   }
 
+  const handleConstellationMouseMove = (event) => {
+    const capsules = document.querySelectorAll('.stat-capsule')
+    const rect = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - rect.left) / rect.width - 0.5
+    const y = (event.clientY - rect.top) / rect.height - 0.5
+    
+    capsules.forEach((capsule, index) => {
+      const intensity = 0.08
+      const delay = index * 0.05
+      const offsetX = x * intensity * (1 + delay)
+      const offsetY = y * intensity * (1 + delay)
+      
+      capsule.style.setProperty('--parallax-x', `${offsetX}px`)
+      capsule.style.setProperty('--parallax-y', `${offsetY}px`)
+    })
+  }
+
   const journeyMilestones = [
     {
       id: 'school',
@@ -309,6 +306,57 @@ const AboutPage = () => {
       description: 'This is just the beginning of the journey.',
       image: moreMilestonesImage,
       isFinal: true
+    }
+  ]
+
+  const achievementNodes = [
+    {
+      id: 'contrib',
+      title: 'Open Source Contributions',
+      value: '1.2k',
+      icon: GitCommit
+    },
+    {
+      id: 'streak',
+      title: 'Consistency Streak',
+      value: '45d',
+      icon: Flame
+    },
+    {
+      id: 'hours',
+      title: 'Focused Build Hours',
+      value: '2.5k',
+      icon: Clock
+    },
+    {
+      id: 'repos',
+      title: 'Active Repositories',
+      value: '28',
+      icon: FolderGit2
+    },
+    {
+      id: 'awards',
+      title: 'Podiums & Wins',
+      value: '15',
+      icon: Trophy
+    },
+    {
+      id: 'impact',
+      title: 'Performance Uplift',
+      value: '42%',
+      icon: TrendingUp
+    },
+    {
+      id: 'mentorship',
+      title: 'Mentorship & Sessions',
+      value: '30+',
+      icon: Users
+    },
+    {
+      id: 'shipping',
+      title: 'Shipping Velocity',
+      value: '18',
+      icon: Package
     }
   ]
 
@@ -395,56 +443,52 @@ const AboutPage = () => {
           <ZigZagJourney items={journeyMilestones} />
         </section>
 
-        {/* CONTRIBUTION DASHBOARD */}
-        <section className="dashboard-section" ref={dashboardRef}>
-          <h2 className="section-title">Contributions & Achievements</h2>
-          <div className="dashboard-grid">
-            <div className="dashboard-card reveal-item" style={{ '--index': 0 }}>
-              <div className="card-icon">
-                <Github size={32} strokeWidth={2} />
-              </div>
-              <div className="card-value" data-target="1250">0</div>
-              <div className="card-label">Total Contributions</div>
-            </div>
+        {/* CONTRIBUTIONS & ACHIEVEMENTS */}
+        <section 
+          className="achievements-section" 
+          ref={dashboardRef}
+          onMouseMove={handleConstellationMouseMove}
+        >
+          <div className="section-header">
+            <h2 className="section-title">Contributions & Achievements</h2>
+            <p className="section-subtitle">
+              A curated view of milestones and metrics that define the journey.
+            </p>
+          </div>
 
-            <div className="dashboard-card reveal-item" style={{ '--index': 1 }}>
-              <div className="card-icon">
-                <TrendingUp size={32} strokeWidth={2} />
-              </div>
-              <div className="card-value" data-target="45">0</div>
-              <div className="card-label">Current Streak</div>
+          <div className="achievements-dock">
+            <div className="dock-glow" />
+            <div className="dock-particles" aria-hidden="true">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <span
+                  key={i}
+                  style={{
+                    '--x': `${(i * 8.33) % 100}%`,
+                    '--d': `${10 + (i % 4) * 2}s`,
+                    '--s': `${0.02 + (i % 3) * 0.01}`
+                  }}
+                />
+              ))}
             </div>
-
-            <div className="dashboard-card reveal-item" style={{ '--index': 2 }}>
-              <div className="card-icon">
-                <Calendar size={32} strokeWidth={2} />
-              </div>
-              <div className="card-value" data-target="120">0</div>
-              <div className="card-label">Longest Streak</div>
-            </div>
-
-            <div className="dashboard-card reveal-item" style={{ '--index': 3 }}>
-              <div className="card-icon">
-                <Clock size={32} strokeWidth={2} />
-              </div>
-              <div className="card-value" data-target="2500">0</div>
-              <div className="card-label">Coding Hours</div>
-            </div>
-
-            <div className="dashboard-card reveal-item" style={{ '--index': 4 }}>
-              <div className="card-icon">
-                <GitBranch size={32} strokeWidth={2} />
-              </div>
-              <div className="card-value" data-target="28">0</div>
-              <div className="card-label">Repositories</div>
-            </div>
-
-            <div className="dashboard-card reveal-item" style={{ '--index': 5 }}>
-              <div className="card-icon">
-                <Award size={32} strokeWidth={2} />
-              </div>
-              <div className="card-value" data-target="15">0</div>
-              <div className="card-label">Achievements</div>
+            <div className="achievements-capsules">
+              {achievementNodes.map((node, index) => {
+                const IconComponent = node.icon
+                return (
+                  <div
+                    key={node.id}
+                    className="stat-capsule reveal-item"
+                    style={{ '--index': index }}
+                  >
+                    <div className="capsule-icon">
+                      <IconComponent size={18} strokeWidth={1.5} />
+                    </div>
+                    <div className="capsule-content">
+                      <div className="capsule-value">{node.value}</div>
+                      <div className="capsule-label">{node.title}</div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
