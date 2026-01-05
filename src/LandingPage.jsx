@@ -86,6 +86,8 @@ const LandingPage = () => {
       navigate('/contact')
     } else if (iconId === 'about') {
       navigate('/about')
+    } else if (iconId === 'resume') {
+      navigate('/resume')
     }
     // Add other page navigations here as you create them
     // else if (iconId === 'projects') {

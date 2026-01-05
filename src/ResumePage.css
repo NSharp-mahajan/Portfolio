@@ -1,0 +1,584 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  color-scheme: dark;
+}
+
+.resume-page {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #000000;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Global tech / holographic overlay */
+.resume-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    /* subtle vertical energy streaks */
+    repeating-linear-gradient(
+      to bottom,
+      rgba(250, 204, 21, 0.05),
+      rgba(250, 204, 21, 0.05) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    /* diagonal tech mesh */
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 18%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.02) 60%,
+      transparent 100%
+    );
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+  animation: hologramDrift 22s linear infinite alternate;
+}
+
+.resume-page::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(250, 204, 21, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 85% 80%, rgba(56, 189, 248, 0.09) 0%, transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  animation: ambientShift 18s ease-in-out infinite alternate;
+}
+
+@keyframes hologramDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-40px, -60px, 0);
+  }
+}
+
+@keyframes ambientShift {
+  0% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1.02) translate3d(0, -12px, 0);
+  }
+}
+
+/* Back Button */
+.resume-back-button {
+  position: fixed;
+  top: 22px;
+  left: 22px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(250, 204, 21, 0.5);
+  border-radius: 999px;
+  color: #facc15;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.resume-back-button:hover {
+  background: rgba(250, 204, 21, 0.1);
+  border-color: rgba(250, 204, 21, 0.8);
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Floating Particles Background */
+.resume-particles-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.resume-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  left: var(--x);
+  top: var(--y);
+  animation: floatParticle var(--duration, 20s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0.6;
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(20px, -30px) scale(1.2);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-15px, -50px) scale(0.8);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(30px, -20px) scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+/* Main Container */
+.resume-container {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 100px 0 120px 0;
+  animation: fadeInUp 0.8s ease forwards;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contextual Section */
+.resume-context-section {
+  width: 100%;
+  text-align: center;
+  margin: 0 0 3rem 0;
+  padding: 0 2rem;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.resume-context-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  background: linear-gradient(120deg, #fff4cc 0%, #fcd86c 45%, #f5b93c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.75rem;
+  letter-spacing: 2px;
+  line-height: 1.3;
+}
+
+.resume-context-description {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* PDF Viewer Wrapper */
+.resume-viewer-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+/* Glassmorphism Frame */
+.resume-viewer-glass {
+  position: relative;
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(250, 204, 21, 0.2);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(250, 204, 21, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 60px rgba(250, 204, 21, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.resume-viewer-glass::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 0;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.3), rgba(250, 204, 21, 0.05));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.resume-viewer-glass:hover {
+  border-color: rgba(250, 204, 21, 0.35);
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(250, 204, 21, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 80px rgba(250, 204, 21, 0.15);
+}
+
+.resume-viewer-glass:hover::before {
+  opacity: 1;
+}
+
+.resume-viewer {
+  width: 100%;
+  height: 90vh;
+  min-height: 700px;
+  background: #ffffff;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.resume-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Loading State */
+.resume-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 10;
+  color: rgba(250, 204, 21, 0.9);
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  color: #facc15;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.resume-loading p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Error State */
+.resume-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 10;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 2rem;
+}
+
+.resume-error p {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.resume-error-hint {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+/* Download Button Container - Sticky */
+.resume-download-container {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.resume-download-container button {
+  pointer-events: all;
+}
+
+.resume-download-button {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.125rem 2.75rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(250, 204, 21, 0.7);
+  border-radius: 14px;
+  color: #facc15;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(250, 204, 21, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.resume-download-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.2) 0%, rgba(250, 204, 21, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.resume-download-button::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.6), rgba(250, 204, 21, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.resume-download-button:hover {
+  background: rgba(250, 204, 21, 0.2);
+  border-color: rgba(250, 204, 21, 1);
+  box-shadow: 
+    0 8px 36px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(250, 204, 21, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 60px rgba(250, 204, 21, 0.3);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.resume-download-button:hover::before {
+  opacity: 1;
+}
+
+.resume-download-button:hover::after {
+  opacity: 1;
+}
+
+.resume-download-button:active {
+  transform: translateY(-1px) scale(1);
+}
+
+.download-icon {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.resume-download-button:hover .download-icon {
+  transform: translateY(-3px) rotate(-5deg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resume-container {
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+
+  .resume-context-section {
+    max-width: 100%;
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .resume-context-title {
+    font-size: clamp(1.5rem, 5vw, 1.9rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .resume-context-description {
+    font-size: 0.95rem;
+  }
+
+  .resume-viewer-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+
+  .resume-viewer-glass {
+    padding: 10px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .resume-viewer {
+    height: 80vh;
+    min-height: 600px;
+    border-radius: 0;
+  }
+
+  .resume-download-container {
+    bottom: 20px;
+  }
+
+  .resume-download-button {
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+  }
+
+  .resume-back-button {
+    top: 16px;
+    left: 16px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume-container {
+    padding-top: 70px;
+    padding-bottom: 90px;
+  }
+
+  .resume-context-section {
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .resume-context-title {
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.4rem;
+  }
+
+  .resume-context-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .resume-viewer-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+
+  .resume-viewer-glass {
+    padding: 8px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .resume-viewer {
+    height: 75vh;
+    min-height: 500px;
+    border-radius: 0;
+  }
+
+  .resume-download-container {
+    bottom: 15px;
+  }
+
+  .resume-download-button {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.85rem;
+    letter-spacing: 1.2px;
+    gap: 0.625rem;
+  }
+
+  .resume-download-button .download-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Page Transition Animation */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.resume-page {
+  animation: pageFadeIn 0.6s ease forwards;
+}
+
