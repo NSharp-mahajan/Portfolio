@@ -3,6 +3,7 @@ import LandingPage from './LandingPage'
 import ContactPage from './ContactPage'
 import AboutPage from './AboutPage'
 import ResumePage from './ResumePage'
+import FreelanceServicesPage from './FreelanceServicesPage'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/resume" element={<ResumePage />} />
+        <Route path="/freelance" element={<FreelanceServicesPage />} />
       </Routes>
     </BrowserRouter>
   )

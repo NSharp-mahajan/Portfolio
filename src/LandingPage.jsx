@@ -88,6 +88,8 @@ const LandingPage = () => {
       navigate('/about')
     } else if (iconId === 'resume') {
       navigate('/resume')
+    } else if (iconId === 'freelance') {
+      navigate('/freelance')
     }
     // Add other page navigations here as you create them
     // else if (iconId === 'projects') {
