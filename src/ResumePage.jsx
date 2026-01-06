@@ -72,7 +72,7 @@ const ResumePage = () => {
           <div className="resume-context-section">
             <h2 className="resume-context-title">Professional Resume</h2>
             <p className="resume-context-description">
-              A comprehensive overview of my engineering expertise, impactful projects, and professional achievements.
+              A comprehensive overview of my engineering, projects, and professional achievements.
             </p>
           </div>
 
