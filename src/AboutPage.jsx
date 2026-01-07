@@ -239,7 +239,7 @@ const AboutPage = () => {
       id: 'chitkara',
       title: 'Joined Chitkara University (CSE — AI & ML)',
       date: '2024',
-      description: 'Started my technical journey.',
+      description: 'Started my technical and coding journey.',
       image: chitkaraImage
     },
     {
