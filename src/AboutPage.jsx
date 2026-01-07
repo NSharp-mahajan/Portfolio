@@ -282,7 +282,7 @@ const AboutPage = () => {
       id: 'ten-hackathons',
       title: '10+ Hackathons Across India',
       date: 'University Journey',
-      description: 'Competed, learned, and collaborated nationwide.',
+      description: 'learned, and collaborated nationwide.',
       image: hackathonsImage
     },
     {
