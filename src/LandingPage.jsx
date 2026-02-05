@@ -39,12 +39,10 @@ const floatingIcons = [
   { id: 'freelance', label: 'Freelance Service', Icon: BriefcaseBusiness },
   { id: 'achievements', label: 'Achievements', Icon: Trophy },
   { id: 'resume', label: 'Resume', Icon: FileText },
-  { id: 'skills', label: 'Skills', Icon: Sparkles },
   { id: 'about', label: 'About Me', Icon: UserRound }
 ]
 
 const floatDurations = ['4s', '5s', '6s', '4.5s', '5.5s', '4.2s', '5.2s']
-
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -53,12 +51,20 @@ const LandingPage = () => {
   const [showNextPage, setShowNextPage] = useState(false)
 
   useEffect(() => {
-    // Show loading bar after landing page is visible (500ms delay)
-    const loadingTimer = setTimeout(() => {
-      setShowLoading(true)
-    }, 500)
+    // Check if user has seen splash screen before
+    const hasSeenSplash = localStorage.getItem('hasSeenSplash')
+    
+    if (!hasSeenSplash) {
+      // Show loading bar after landing page is visible (500ms delay)
+      const loadingTimer = setTimeout(() => {
+        setShowLoading(true)
+      }, 500)
 
-    return () => clearTimeout(loadingTimer)
+      return () => clearTimeout(loadingTimer)
+    } else {
+      // Skip loading and go directly to next page
+      setShowNextPage(true)
+    }
   }, [])
 
   useEffect(() => {
@@ -70,6 +76,8 @@ const LandingPage = () => {
             clearInterval(interval)
             setTimeout(() => {
               setShowNextPage(true)
+              // Mark splash screen as seen
+              localStorage.setItem('hasSeenSplash', 'true')
             }, 300)
             return 100
           }
@@ -170,8 +178,6 @@ const LandingPage = () => {
             </div>
             <div className="profile-tooltip">Natansh Mahajan</div>
           </div>
-
-          <button className="login-button">Login</button>
           
           {/* Blank page - ready for you to build one by one */}
         </div>
@@ -212,8 +218,6 @@ const LandingPage = () => {
         </div>
         <div className="profile-tooltip">Natansh Mahajan</div>
       </div>
-
-      <button className="login-button">Login</button>
     </div>
     </>
   )
