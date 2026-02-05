@@ -1,0 +1,390 @@
+/* ============================================
+   GITHUB METRICS SECTION - CLEAN & MINIMAL
+   ============================================ */
+
+.github-metrics-section {
+  position: relative;
+  padding: 6rem 2rem;
+  background: #000000;
+  z-index: 1;
+}
+
+.metrics-header {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.metrics-title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.metrics-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.metrics-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.metrics-section, .achievements-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(250, 204, 21, 0.9);
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.metric-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    rgba(250, 204, 21, 0.4) 0%, 
+    rgba(250, 204, 21, 0.2) 50%, 
+    rgba(250, 204, 21, 0.4) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metric-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border-color: rgba(250, 204, 21, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(250, 204, 21, 0.1) inset;
+}
+
+.metric-card:hover::before {
+  opacity: 1;
+}
+
+.achievement-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.05) 0%, rgba(250, 204, 21, 0.02) 100%);
+  border: 1px solid rgba(250, 204, 21, 0.2);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.achievement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    rgba(250, 204, 21, 0.6) 0%, 
+    rgba(250, 204, 21, 0.3) 50%, 
+    rgba(250, 204, 21, 0.6) 100%
+  );
+  opacity: 0.8;
+}
+
+.achievement-card:hover {
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.08) 0%, rgba(250, 204, 21, 0.04) 100%);
+  border-color: rgba(250, 204, 21, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(250, 204, 21, 0.1);
+}
+
+.metric-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  color: rgba(250, 204, 21, 0.9);
+  background: rgba(250, 204, 21, 0.08);
+  border-radius: 12px;
+  border: 1px solid rgba(250, 204, 21, 0.15);
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover .metric-icon {
+  color: rgba(250, 204, 21, 1);
+  background: rgba(250, 204, 21, 0.15);
+  border-color: rgba(250, 204, 21, 0.3);
+  transform: scale(1.05);
+}
+
+.achievement-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  font-size: 1.75rem;
+  background: rgba(250, 204, 21, 0.1);
+  border-radius: 16px;
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  transition: all 0.3s ease;
+}
+
+.achievement-card:hover .achievement-icon {
+  background: rgba(250, 204, 21, 0.2);
+  border-color: rgba(250, 204, 21, 0.4);
+  transform: scale(1.05);
+}
+
+.metric-content, .achievement-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.metric-value, .achievement-value {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.metric-label, .achievement-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.metric-helper {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.3;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Loading skeleton states */
+.skeleton {
+  pointer-events: none;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.metric-card.skeleton {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.metric-card.skeleton .metric-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.metric-card.skeleton .metric-value {
+  width: 60px;
+  height: 24px;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.metric-card.skeleton .metric-label {
+  width: 120px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Error state */
+.error-message {
+  text-align: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .metrics-container {
+    gap: 3rem;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  .metric-card, .achievement-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .github-metrics-section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .metrics-header {
+    margin-bottom: 3rem;
+  }
+  
+  .metrics-container {
+    gap: 2.5rem;
+  }
+  
+  .metrics-grid, .achievements-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .metric-card, .achievement-card {
+    padding: 1.25rem;
+  }
+  
+  .metric-icon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .achievement-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+  
+  .metric-value, .achievement-value {
+    font-size: 1.75rem;
+  }
+  
+  .metric-label, .achievement-label {
+    font-size: 0.85rem;
+  }
+  
+  .metric-helper {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .github-metrics-section {
+    padding: 3rem 1rem;
+  }
+  
+  .metrics-title {
+    font-size: 1.75rem;
+  }
+  
+  .metrics-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .metric-card, .achievement-card {
+    padding: 1rem;
+    gap: 0.875rem;
+  }
+  
+  .metric-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .achievement-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+  
+  .metric-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './AboutPage.css'
+import './GithubMetricsSection.css'
+import './SkillsSection.css'
 import CursorEffect from './CursorEffect'
+import GithubMetricsSection from './GithubMetricsSection'
+import SkillsSection from './SkillsSection'
 import aboutBackground from './assets/images/About.png'
 import profileImage from './assets/images/image5.jpg'
 import image6 from './assets/images/image6.jpg'
@@ -15,7 +19,7 @@ import projectImage from './assets/images/project.png'
 import msFinaleImage from './assets/images/off.jpeg'
 import techHeadImage from './assets/images/image7.jpg'
 import moreMilestonesImage from './assets/images/image8.jpg'
-import { ArrowLeft, Code, Database, Globe, Smartphone, Palette, Zap, Rocket, Star, GitBranch, Target, GitCommit, Flame, Clock, FolderGit2, Trophy, TrendingUp, Users, Package } from 'lucide-react'
+import { ArrowLeft, Code, Database, Globe, Smartphone, Palette, Zap, Rocket, Star, Target, GitBranch } from 'lucide-react'
 
 const ZigZagJourney = ({ items }) => {
   const rows = []
@@ -114,54 +118,11 @@ const JourneyCard = ({ item, index }) => {
 
 const AboutPage = () => {
   const navigate = useNavigate()
-  const dashboardRef = useRef(null)
-  const [countersAnimated, setCountersAnimated] = useState(false)
   const [heroParallax, setHeroParallax] = useState({ x: 0, y: 0 })
-
-  // Scroll-linked timeline + dashboard count-up
-  useEffect(() => {
-    const animateCounters = () => {
-      const cards = document.querySelectorAll('.dashboard-card .card-value')
-      cards.forEach((card) => {
-        const target = parseInt(card.getAttribute('data-target') || '0', 10)
-        const duration = 2000
-        const increment = target / (duration / 16)
-        let current = 0
-
-        const updateCounter = () => {
-          current += increment
-          if (current < target) {
-            card.textContent = Math.floor(current).toString()
-            requestAnimationFrame(updateCounter)
-          } else {
-            card.textContent = target.toString()
-          }
-        }
-
-        updateCounter()
-      })
-    }
-
-    const handleScroll = () => {
-      // Animate counters when dashboard is in view
-      if (dashboardRef.current && !countersAnimated) {
-        const rect = dashboardRef.current.getBoundingClientRect()
-        const windowHeight = window.innerHeight
-        if (rect.top < windowHeight * 0.8) {
-          setCountersAnimated(true)
-          animateCounters()
-        }
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Initial check
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [countersAnimated])
 
   // Intersection Observer for staggered reveals
   useEffect(() => {
-    const elements = document.querySelectorAll('.reveal-item')
+    const elements = document.querySelectorAll('.reveal-item, .skill-card')
     if (!elements.length) return
 
     const observer = new IntersectionObserver(
@@ -208,23 +169,6 @@ const AboutPage = () => {
     const x = (event.clientX - rect.left) / rect.width - 0.5
     const y = (event.clientY - rect.top) / rect.height - 0.5
     setHeroParallax({ x, y })
-  }
-
-  const handleConstellationMouseMove = (event) => {
-    const capsules = document.querySelectorAll('.stat-capsule')
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = (event.clientX - rect.left) / rect.width - 0.5
-    const y = (event.clientY - rect.top) / rect.height - 0.5
-    
-    capsules.forEach((capsule, index) => {
-      const intensity = 0.08
-      const delay = index * 0.05
-      const offsetX = x * intensity * (1 + delay)
-      const offsetY = y * intensity * (1 + delay)
-      
-      capsule.style.setProperty('--parallax-x', `${offsetX}px`)
-      capsule.style.setProperty('--parallax-y', `${offsetY}px`)
-    })
   }
 
   const journeyMilestones = [
@@ -309,72 +253,6 @@ const AboutPage = () => {
     }
   ]
 
-  const achievementNodes = [
-    {
-      id: 'contrib',
-      title: 'Open Source Contributions',
-      value: '1.2k',
-      icon: GitCommit
-    },
-    {
-      id: 'streak',
-      title: 'Consistency Streak',
-      value: '45d',
-      icon: Flame
-    },
-    {
-      id: 'hours',
-      title: 'Focused Build Hours',
-      value: '2.5k',
-      icon: Clock
-    },
-    {
-      id: 'repos',
-      title: 'Active Repositories',
-      value: '28',
-      icon: FolderGit2
-    },
-    {
-      id: 'awards',
-      title: 'Podiums & Wins',
-      value: '15',
-      icon: Trophy
-    },
-    {
-      id: 'impact',
-      title: 'Performance Uplift',
-      value: '42%',
-      icon: TrendingUp
-    },
-    {
-      id: 'mentorship',
-      title: 'Mentorship & Sessions',
-      value: '30+',
-      icon: Users
-    },
-    {
-      id: 'shipping',
-      title: 'Shipping Velocity',
-      value: '18',
-      icon: Package
-    }
-  ]
-
-  const skills = [
-    { name: 'React', icon: Code, category: 'Frontend' },
-    { name: 'Node.js', icon: Code, category: 'Backend' },
-    { name: 'MongoDB', icon: Database, category: 'Database' },
-    { name: 'JavaScript', icon: Code, category: 'Language' },
-    { name: 'TypeScript', icon: Code, category: 'Language' },
-    { name: 'Python', icon: Code, category: 'Language' },
-    { name: 'HTML/CSS', icon: Globe, category: 'Frontend' },
-    { name: 'React Native', icon: Smartphone, category: 'Mobile' },
-    { name: 'UI/UX Design', icon: Palette, category: 'Design' },
-    { name: 'Git', icon: GitBranch, category: 'Tools' },
-    { name: 'Express.js', icon: Code, category: 'Backend' },
-    { name: 'Firebase', icon: Database, category: 'Backend' }
-  ]
-
   return (
     <>
       <CursorEffect />
@@ -444,142 +322,10 @@ const AboutPage = () => {
         </section>
 
         {/* CONTRIBUTIONS & ACHIEVEMENTS */}
-        <section 
-          className="achievements-section" 
-          ref={dashboardRef}
-          onMouseMove={handleConstellationMouseMove}
-        >
-          <div className="section-header">
-            <h2 className="section-title">Contributions & Achievements</h2>
-            <p className="section-subtitle">
-              A curated view of milestones and metrics that define the journey.
-            </p>
-          </div>
+        <GithubMetricsSection />
 
-          <div className="achievements-dock">
-            <div className="dock-glow" />
-            <div className="dock-particles" aria-hidden="true">
-              {Array.from({ length: 12 }).map((_, i) => (
-                <span
-                  key={i}
-                  style={{
-                    '--x': `${(i * 8.33) % 100}%`,
-                    '--d': `${10 + (i % 4) * 2}s`,
-                    '--s': `${0.02 + (i % 3) * 0.01}`
-                  }}
-                />
-              ))}
-            </div>
-            <div className="achievements-capsules">
-              {achievementNodes.map((node, index) => {
-                const IconComponent = node.icon
-                return (
-                  <div
-                    key={node.id}
-                    className="stat-capsule reveal-item"
-                    style={{ '--index': index }}
-                  >
-                    <div className="capsule-icon">
-                      <IconComponent size={18} strokeWidth={1.5} />
-                    </div>
-                    <div className="capsule-content">
-                      <div className="capsule-value">{node.value}</div>
-                      <div className="capsule-label">{node.title}</div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* STORY SECTION */}
-        <section className="story-section">
-          <div className="story-container">
-            <div className="story-content">
-                <div className="story-block reveal-item" style={{ '--index': 0 }}>
-                <h3 className="story-heading">
-                  <Zap className="story-icon" size={24} />
-                  How It Started
-                </h3>
-                <p className="story-text">
-                  My journey began with curiosity and a passion for solving problems.
-                  What started as simple HTML pages evolved into complex full-stack
-                  applications, each project teaching me something new.
-                </p>
-              </div>
-
-                <div className="story-block reveal-item" style={{ '--index': 1 }}>
-                <h3 className="story-heading">
-                  <Rocket className="story-icon" size={24} />
-                  How It's Going
-                </h3>
-                <p className="story-text">
-                  Today, I lead technical teams, architect scalable solutions, and
-                  design intuitive user experiences. Every day is an opportunity to
-                  push boundaries and create something meaningful.
-                </p>
-              </div>
-
-                <div className="story-block reveal-item" style={{ '--index': 2 }}>
-                <h3 className="story-heading">
-                  <Target className="story-icon" size={24} />
-                  What Drives Me
-                </h3>
-                <p className="story-text">
-                  Innovation, excellence, and impact. I'm driven by the challenge of
-                  turning complex ideas into elegant solutions that make a difference
-                  in people's lives.
-                </p>
-              </div>
-
-                <div className="story-block reveal-item" style={{ '--index': 3 }}>
-                <h3 className="story-heading">
-                  <Star className="story-icon" size={24} />
-                  What I'm Building Next
-                </h3>
-                <p className="story-text">
-                  Exploring AI integration, building scalable microservices, and
-                  creating immersive web experiences. The future is full of
-                  possibilities, and I'm excited to be part of it.
-                </p>
-              </div>
-            </div>
-
-            <div className="story-divider"></div>
-
-            <div className="story-image-container">
-              <div className="story-image">
-                <div className="story-image-placeholder">
-                  <span>Your Photo</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SKILLS GRID */}
-        <section className="skills-section">
-          <h2 className="section-title">Skills & Technologies</h2>
-          <div className="skills-grid">
-            {skills.map((skill, index) => {
-              const IconComponent = skill.icon
-              return (
-                <div
-                  key={index}
-                  className="skill-card reveal-item"
-                  style={{ '--index': index }}
-                >
-                  <div className="skill-icon-wrapper">
-                    <IconComponent className="skill-icon" size={40} strokeWidth={2} />
-                  </div>
-                  <div className="skill-name">{skill.name}</div>
-                  <div className="skill-category">{skill.category}</div>
-                </div>
-              )
-            })}
-          </div>
-        </section>
+        {/* SKILLS & TECHNOLOGIES */}
+        <SkillsSection />
       </div>
     </>
   )
