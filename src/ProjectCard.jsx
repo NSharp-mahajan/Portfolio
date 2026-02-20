@@ -1,10 +1,11 @@
 import React from 'react'
+import { ExternalLink, Github } from 'lucide-react'
 import './ProjectCard.css'
 
 const ProjectCard = ({ project }) => {
   return (
     <div className="project-card">
-      <div className="project-image">
+      <div className="project-image-wrapper">
         <img 
           src={project.image} 
           alt={project.title}
@@ -31,17 +32,19 @@ const ProjectCard = ({ project }) => {
             href={project.projectUrl} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="action-button primary"
+            className="action-link primary"
           >
-            View Project
+            <span>Live</span>
+            <ExternalLink size={14} />
           </a>
           <a 
             href={project.codeUrl} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="action-button secondary"
+            className="action-link secondary"
           >
-            Code
+            <span>Code</span>
+            <Github size={14} />
           </a>
         </div>
       </div>

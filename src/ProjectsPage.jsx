@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ProjectsPage.css'
 import CursorEffect from './CursorEffect'
-import ProjectCard from './ProjectCard'
+import ProjectGrid from './ProjectGrid'
 import ProjectFilters from './ProjectFilters'
 import { projects, categories } from './data/projects'
 import { ArrowLeft } from 'lucide-react'
@@ -37,10 +37,7 @@ const ProjectsPage = () => {
 
         <div className="projects-container">
           <header className="projects-header">
-            <h1 className="projects-title">Selected Work</h1>
-            <p className="projects-subtitle">
-              Impact-driven projects that solve real problems and deliver measurable results
-            </p>
+            <h1 className="projects-title">Projects</h1>
           </header>
 
           <ProjectFilters
@@ -49,11 +46,7 @@ const ProjectsPage = () => {
             onCategoryChange={handleCategoryChange}
           />
 
-          <div className="projects-grid">
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
+          <ProjectGrid projects={filteredProjects} />
 
           {filteredProjects.length === 0 && (
             <div className="no-projects">
