@@ -4,6 +4,7 @@ import ContactPage from './ContactPage'
 import AboutPage from './AboutPage'
 import ResumePage from './ResumePage'
 import FreelanceServicesPage from './FreelanceServicesPage'
+import ProjectsPage from './ProjectsPage'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/resume" element={<ResumePage />} />
         <Route path="/freelance" element={<FreelanceServicesPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
       </Routes>
     </BrowserRouter>
   )

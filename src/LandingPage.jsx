@@ -98,11 +98,9 @@ const LandingPage = () => {
       navigate('/resume')
     } else if (iconId === 'freelance') {
       navigate('/freelance')
+    } else if (iconId === 'projects') {
+      navigate('/projects')
     }
-    // Add other page navigations here as you create them
-    // else if (iconId === 'projects') {
-    //   navigate('/projects')
-    // }
   }
 
   // Render full content with icons for next page
