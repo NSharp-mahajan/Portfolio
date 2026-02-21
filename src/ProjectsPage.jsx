@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import './ProjectsPage.css'
 import CursorEffect from './CursorEffect'
 import ProjectGrid from './ProjectGrid'
-import ProjectFilters from './ProjectFilters'
 import { projects, categories } from './data/projects'
 import { ArrowLeft } from 'lucide-react'
 
@@ -39,12 +38,6 @@ const ProjectsPage = () => {
           <header className="projects-header">
             <h1 className="projects-title">Projects</h1>
           </header>
-
-          <ProjectFilters
-            categories={categories}
-            activeCategory={activeCategory}
-            onCategoryChange={handleCategoryChange}
-          />
 
           <ProjectGrid projects={filteredProjects} />
 

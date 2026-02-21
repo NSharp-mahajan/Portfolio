@@ -48,6 +48,26 @@ export const projects = [
     techStack: ["REACT", "NODE", "EXPRESS", "MongoDB"],
     projectUrl: "https://dts-web-eight.vercel.app/",
     codeUrl: "https://github.com/NSharp-mahajan/DTS-Web"
+  },
+  {
+    id: 6,
+    title: "Tech Venture",
+    description: "The command center for founders who build with intention. Unify execution, validation, and growth in one place, Helps in connecting them through their teams",
+    image: "/src/assets/images/techVenture.png",
+    category: "All",
+    techStack: ["MERN", "SUPABASE", "TAILWIND"],
+    projectUrl: "https://startup-command.netlify.app/",
+    codeUrl: "https://github.com/NSharp-mahajan/startup-command"
+  },
+  {
+    id: 6,
+    title: "GreenGrid",
+    description: "The Environmental Intelligence System for Future Cities Monitor, predict, and simulate environmental conditions using AI-powered Green Grids and Digital Twins. Transform your city into a sustainable ecosystem.",
+    image: "/src/assets/images/greengrid.png",
+    category: "All",
+    techStack: ["TYPESCRIPT", "NODE", "EXPRESS", "ML", "LANGCHAIN", "FIREBASE"],
+    projectUrl: "https://legendary-paprenjak-104fed.netlify.app/",
+    codeUrl: "https://github.com/NSharp-mahajan/greengrid-command-center"
   }
 ]
 

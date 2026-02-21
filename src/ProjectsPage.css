@@ -1,12 +1,50 @@
 /* ============================================
-   PROJECTS PAGE - FUTURISTIC & CLEAN
+   PROJECTS PAGE - CINEMATIC LUXURY DESIGN
    ============================================ */
 
 .projects-page {
   min-height: 100vh;
-  background: radial-gradient(ellipse at center top, rgba(250, 204, 21, 0.03) 0%, #000000 50%);
+  background: #0a0a0a;
   position: relative;
   z-index: 1;
+  overflow-x: hidden;
+}
+
+/* Cinematic Background */
+.projects-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(147, 51, 234, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(212, 175, 55, 0.01) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Grain texture overlay */
+.projects-page::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.01) 2px,
+      rgba(255, 255, 255, 0.01) 4px
+    );
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.3;
 }
 
 .back-button {
@@ -16,52 +54,67 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.875rem 1.5rem;
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.15);
   border-radius: 12px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   z-index: 100;
   font-family: 'Inter', system-ui, sans-serif;
   text-decoration: none;
+  backdrop-filter: blur(20px);
 }
 
 .back-button:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: rgba(212, 175, 55, 0.9);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.1);
 }
 
 .projects-container {
-  max-width: 1400px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 6rem 1.5rem 4rem;
+  padding: 6rem 2rem 4rem;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .projects-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 }
 
 .projects-title {
-  font-size: clamp(3rem, 6vw, 4rem);
-  font-weight: 700;
+  font-size: clamp(3.5rem, 7vw, 5rem);
+  font-weight: 800;
   color: #ffffff;
   margin-bottom: 1rem;
   font-family: 'Inter', system-ui, sans-serif;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(212, 175, 55, 0.8) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+}
+
+.projects-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
 }
 
 .projects-subtitle {
@@ -98,7 +151,7 @@
 .no-projects {
   text-align: center;
   padding: 4rem 2rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.4);
   font-size: 1.125rem;
   font-family: 'Inter', system-ui, sans-serif;
 }
@@ -106,18 +159,22 @@
 /* Responsive design */
 @media (max-width: 1024px) {
   .projects-container {
-    padding: 5rem 1.25rem 3rem;
+    padding: 5rem 1.5rem 3rem;
   }
   
   .back-button {
     top: 1.5rem;
     left: 1.5rem;
-    padding: 0.625rem 1rem;
+    padding: 0.75rem 1.25rem;
     font-size: 0.8rem;
   }
   
   .projects-title {
-    font-size: clamp(2.5rem, 5vw, 3rem);
+    font-size: clamp(3rem, 6vw, 4rem);
+  }
+  
+  .projects-header {
+    margin-bottom: 5rem;
   }
 }
 
@@ -129,12 +186,16 @@
   .back-button {
     top: 1rem;
     left: 1rem;
-    padding: 0.5rem 0.875rem;
+    padding: 0.625rem 1rem;
     font-size: 0.75rem;
   }
   
   .projects-title {
-    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-size: clamp(2.5rem, 5vw, 3rem);
+  }
+  
+  .projects-header {
+    margin-bottom: 4rem;
   }
 }
 
@@ -146,11 +207,15 @@
   .back-button {
     top: 0.75rem;
     left: 0.75rem;
-    padding: 0.425rem 0.75rem;
+    padding: 0.5rem 0.875rem;
     font-size: 0.7rem;
   }
   
   .projects-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
+  }
+  
+  .projects-header {
+    margin-bottom: 3rem;
   }
 }

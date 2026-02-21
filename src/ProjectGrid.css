@@ -1,31 +1,32 @@
 /* ============================================
-   PROJECT GRID - FUTURISTIC & CLEAN
+   PROJECT GRID - CINEMATIC LAYOUT
    ============================================ */
 
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  gap: 3rem;
   width: 100%;
+  align-items: start;
 }
 
 /* Responsive grid */
 @media (max-width: 1024px) {
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .project-grid {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 2rem;
   }
 }
 
 @media (max-width: 480px) {
   .project-grid {
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 }
