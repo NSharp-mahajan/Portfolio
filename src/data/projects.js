@@ -4,8 +4,13 @@ export const projects = [
     title: "CyberCop",
     description: "Complete cybersecurity protection toolkit with AI powered threat detection, incident reporting and community driven security solution",
     image: "/src/assets/images/cybercop.png",
+    images: [
+      "/src/assets/images/cybercop.png",
+      "/src/assets/images/cybercop-2.png",
+      "/src/assets/images/cybercop-3.png",
+    ],
     category: "All",
-    techStack: ["MERN", "Supabase", "OpenAI", "LangChain", "Tailwind CSS"],
+    techStack: ["MERN", "Supabase", "OpenAI", "LangChain"],
     projectUrl: "https://cybercop-safe-space.vercel.app/",
     codeUrl: "https://github.com/NSharp-mahajan/cybercop-safe-space"
   },
@@ -14,6 +19,10 @@ export const projects = [
     title: "Gaming Platform",
     description: "A Gaming platorm basically designed to explore the world of gaming, with just internet connection you are good to go",
     image: "/src/assets/images/rapture.png",
+    images: [
+      "/src/assets/images/rapture.png",
+      "/src/assets/images/rapture-2.png"
+    ],
     category: "All",
     techStack: ["HTML", "CSS", "JAVASCRIPT"],
     projectUrl: "https://rapture-phi.vercel.app/",
@@ -34,6 +43,10 @@ export const projects = [
     title: "Saral Seva",
     description: "The application and grievance resolution process for rural government schemes + Simplified Work Based Accounting Application for Panchayati Raj",
     image: "/src/assets/images/saralseva.png",
+    images: [
+      "/src/assets/images/saralseva.png",
+      "/src/assets/images/saralseva-2.png"
+    ],
     category: "All",
     techStack: ["REACT", "NODE", "EXPRESS", "MongoDB"],
     projectUrl: "https://saralseva.vercel.app/",
@@ -65,7 +78,7 @@ export const projects = [
     description: "The Environmental Intelligence System for Future Cities Monitor, predict, and simulate environmental conditions using AI-powered Green Grids and Digital Twins. Transform your city into a sustainable ecosystem.",
     image: "/src/assets/images/greengrid.png",
     category: "All",
-    techStack: ["TYPESCRIPT", "NODE", "EXPRESS", "ML", "LANGCHAIN", "FIREBASE"],
+    techStack: ["TYPESCRIPT", "NODE", "EXPRESS", "LANGCHAIN", "FIREBASE"],
     projectUrl: "https://legendary-paprenjak-104fed.netlify.app/",
     codeUrl: "https://github.com/NSharp-mahajan/greengrid-command-center"
   }

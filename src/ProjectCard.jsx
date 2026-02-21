@@ -94,19 +94,17 @@ const ProjectCard = ({ project }) => {
       
       <div className="project-content">
         <h3 className="project-title">{project.title}</h3>
-        <p className="project-description">{project.description}</p>
+        
+        <div className="project-description">
+          {project.description}
+        </div>
         
         <div className="tech-stack">
-          {project.techStack.slice(0, 4).map((tech, index) => (
+          {project.techStack.map((tech, index) => (
             <span key={index} className="tech-tag">
               {tech}
             </span>
           ))}
-          {project.techStack.length > 4 && (
-            <span className="tech-tag more">
-              +{project.techStack.length - 4}
-            </span>
-          )}
         </div>
         
         <div className="project-actions">
