@@ -9,10 +9,30 @@ export const projects = [
       "/src/assets/images/cybercop-2.png",
       "/src/assets/images/cybercop-3.png",
     ],
-    category: "All",
+    category: "Full Stack",
     techStack: ["MERN", "Supabase", "OpenAI", "LangChain"],
     projectUrl: "https://cybercop-safe-space.vercel.app/",
     codeUrl: "https://github.com/NSharp-mahajan/cybercop-safe-space"
+  },
+  {
+    id: 6,
+    title: "GreenGrid",
+    description: "The Environmental Intelligence System for Future Cities Monitor, predict, and simulate environmental conditions using AI-powered Green Grids and Digital Twins. Transform your city into a sustainable ecosystem.",
+    image: "/src/assets/images/greengrid.png",
+    category: "Full Stack",
+    techStack: ["TYPESCRIPT", "NODE", "EXPRESS", "LANGCHAIN", "FIREBASE"],
+    projectUrl: "https://legendary-paprenjak-104fed.netlify.app/",
+    codeUrl: "https://github.com/NSharp-mahajan/greengrid-command-center"
+  },
+  {
+    id: 5,
+    title: "Design Thinking Society",
+    description: "Official website of a university club designed for the students to communicate with the authorities and faculties through it and get to know about their events",
+    image: "/src/assets/images/dts.png",
+    category: "Full Stack",
+    techStack: ["REACT", "NODE", "EXPRESS", "MongoDB"],
+    projectUrl: "https://dts-web-eight.vercel.app/",
+    codeUrl: "https://github.com/NSharp-mahajan/DTS-Web"
   },
   {
     id: 2,
@@ -23,20 +43,10 @@ export const projects = [
       "/src/assets/images/rapture.png",
       "/src/assets/images/rapture-2.png"
     ],
-    category: "All",
+    category: "Frontend",
     techStack: ["HTML", "CSS", "JAVASCRIPT"],
     projectUrl: "https://rapture-phi.vercel.app/",
     codeUrl: "https://github.com/NSharp-mahajan/Rapture"
-  },
-  {
-    id: 3,
-    title: "Crypto Tracker",
-    description: "Platform designed to check the live crypto scores day by day",
-    image: "/src/assets/images/cryptotracker.png",
-    category: "All",
-    techStack: ["REACT"],
-    projectUrl: "https://crypto-tracker-6bfl.vercel.app/",
-    codeUrl: "https://github.com/NSharp-mahajan/Crypto-Tracker"
   },
   {
     id: 4,
@@ -47,41 +57,31 @@ export const projects = [
       "/src/assets/images/saralseva.png",
       "/src/assets/images/saralseva-2.png"
     ],
-    category: "All",
+    category: "Open Source",
     techStack: ["REACT", "NODE", "EXPRESS", "MongoDB"],
     projectUrl: "https://saralseva.vercel.app/",
     codeUrl: "https://github.com/NSharp-mahajan/SaralSeva"
-  },
-  {
-    id: 5,
-    title: "Design Thinking Society",
-    description: "Official website of a university club designed for the students to communicate with the authorities and faculties through it and get to know about their events",
-    image: "/src/assets/images/dts.png",
-    category: "All",
-    techStack: ["REACT", "NODE", "EXPRESS", "MongoDB"],
-    projectUrl: "https://dts-web-eight.vercel.app/",
-    codeUrl: "https://github.com/NSharp-mahajan/DTS-Web"
   },
   {
     id: 6,
     title: "Tech Venture",
     description: "The command center for founders who build with intention. Unify execution, validation, and growth in one place, Helps in connecting them through their teams",
     image: "/src/assets/images/techVenture.png",
-    category: "All",
+    category: "Full Stack",
     techStack: ["MERN", "SUPABASE", "TAILWIND"],
     projectUrl: "https://startup-command.netlify.app/",
     codeUrl: "https://github.com/NSharp-mahajan/startup-command"
   },
   {
-    id: 6,
-    title: "GreenGrid",
-    description: "The Environmental Intelligence System for Future Cities Monitor, predict, and simulate environmental conditions using AI-powered Green Grids and Digital Twins. Transform your city into a sustainable ecosystem.",
-    image: "/src/assets/images/greengrid.png",
-    category: "All",
-    techStack: ["TYPESCRIPT", "NODE", "EXPRESS", "LANGCHAIN", "FIREBASE"],
-    projectUrl: "https://legendary-paprenjak-104fed.netlify.app/",
-    codeUrl: "https://github.com/NSharp-mahajan/greengrid-command-center"
-  }
+    id: 3,
+    title: "Crypto Tracker",
+    description: "Platform designed to check the live crypto scores day by day",
+    image: "/src/assets/images/cryptotracker.png",
+    category: "Frontend",
+    techStack: ["REACT"],
+    projectUrl: "https://crypto-tracker-6bfl.vercel.app/",
+    codeUrl: "https://github.com/NSharp-mahajan/Crypto-Tracker"
+  },
 ]
 
-export const categories = ["All"]
+export const categories = ["All", "Full Stack", "Frontend", "Open Source"]

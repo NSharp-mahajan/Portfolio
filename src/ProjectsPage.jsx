@@ -39,6 +39,28 @@ const ProjectsPage = () => {
             <h1 className="projects-title">Projects</h1>
           </header>
 
+          {/* Category Filter Section */}
+          <div className="category-filter">
+            <div className="category-buttons">
+              {categories.map((category) => {
+                const count = category === 'All' 
+                  ? projects.length 
+                  : projects.filter(project => project.category === category).length
+                
+                return (
+                  <button
+                    key={category}
+                    className={`category-button ${activeCategory === category ? 'active' : ''}`}
+                    onClick={() => handleCategoryChange(category)}
+                  >
+                    {category}
+                    <span className="category-count">({count})</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
           <ProjectGrid projects={filteredProjects} />
 
           {filteredProjects.length === 0 && (
