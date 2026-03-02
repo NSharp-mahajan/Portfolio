@@ -100,6 +100,8 @@ const LandingPage = () => {
       navigate('/freelance')
     } else if (iconId === 'projects') {
       navigate('/projects')
+    } else if (iconId === 'achievements') {
+      navigate('/achievements')
     }
   }
 
