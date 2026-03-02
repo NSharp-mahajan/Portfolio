@@ -20,7 +20,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/assets/images/contact-back.png');
+  background-image: url('/assets/contact-back.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -913,6 +913,51 @@
 /* Cursor Compatibility */
 .contact-page * {
   cursor: inherit;
+}
+
+/* EmailJS Status Message */
+.status-message {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.status-message.success {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.status-message.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* Submit Button States */
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-button:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(250, 204, 21, 0.3);
+}
+
+.sending-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .contact-page a,

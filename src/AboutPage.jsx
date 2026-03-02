@@ -18,6 +18,7 @@ import hackathonsImage from './assets/images/image2.jpg'
 import projectImage from './assets/images/project.png'
 import msFinaleImage from './assets/images/off.jpeg'
 import techHeadImage from './assets/images/image7.jpg'
+import ach5Image from './assets/images/ach5.jpeg'
 import moreMilestonesImage from './assets/images/image8.jpg'
 import { ArrowLeft, Code, Database, Globe, Smartphone, Palette, Zap, Rocket, Star, Target, GitBranch } from 'lucide-react'
 
@@ -194,13 +195,6 @@ const AboutPage = () => {
       image: imageOne
     },
     {
-      id: 'apple-community',
-      title: 'Apple Student Community',
-      date: 'Sep 2024 – Feb 2025',
-      description: 'Content creator and storyteller.',
-      image: appleCommunityImage
-    },
-    {
       id: 'national-hackathon',
       title: 'National Hackathon Winner',
       date: 'HackWithIndia — 3rd Semester',
@@ -242,6 +236,13 @@ const AboutPage = () => {
       date: 'Leadership',
       description: 'Guiding teams and shaping innovative ideas.',
       image: techHeadImage
+    },
+    {
+      id: 'Coding Ninjas',
+      title: 'Second Hackathon Win',
+      date: 'Feb-2026',
+      description: 'Won Second Hackathon',
+      image: ach5Image
     },
     {
       id: 'more-coming',

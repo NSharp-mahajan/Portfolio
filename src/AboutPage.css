@@ -711,10 +711,10 @@
 
 .journey-node {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.6rem;
-  text-align: center;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.2rem;
+  text-align: left;
   max-width: 480px;
 }
 
@@ -724,8 +724,8 @@
 }
 
 .journey-image {
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   border: 2px solid rgba(255, 217, 94, 0.4);
   background-color: #0a0c14;
@@ -741,7 +741,7 @@
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
   box-shadow:
     0 0 0 1px rgba(255, 217, 94, 0.2),
-    0 0 30px rgba(255, 217, 94, 0.25),
+    0 0 20px rgba(255, 217, 94, 0.25),
     0 0 60px rgba(255, 217, 94, 0.15),
     inset 0 0 40px rgba(0, 0, 0, 0.5);
 }

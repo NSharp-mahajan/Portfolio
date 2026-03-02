@@ -2,16 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './LandingPage.css'
 import CursorEffect from './CursorEffect'
-import {
-  UserRound,
-  Mail,
-  Folder,
-  BriefcaseBusiness,
-  Trophy,
-  Sparkles,
-  FileText,
-  BookOpen
-} from 'lucide-react'
+import OrbitalIcons from './components/OrbitalIcons'
 
 import image1 from './assets/images/image1.jpg'
 import image2 from './assets/images/image2.jpg'
@@ -33,17 +24,6 @@ const collageImages = [
   image7,
   image8
 ]
-
-const floatingIcons = [
-  { id: 'contact', label: 'Contact', Icon: Mail },
-  { id: 'projects', label: 'Projects', Icon: Folder },
-  { id: 'blogs', label: 'Tech Blogs', Icon: BookOpen },
-  { id: 'achievements', label: 'Achievements', Icon: Trophy },
-  { id: 'resume', label: 'Resume', Icon: FileText },
-  { id: 'about', label: 'About Me', Icon: UserRound }
-]
-
-const floatDurations = ['4s', '5s', '6s', '4.5s', '5.5s', '4.2s']
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -90,71 +70,9 @@ const LandingPage = () => {
     }
   }, [showLoading])
 
-  const handleIconClick = (iconId) => {
-    if (iconId === 'contact') {
-      navigate('/contact')
-    } else if (iconId === 'about') {
-      navigate('/about')
-    } else if (iconId === 'resume') {
-      navigate('/resume')
-    } else if (iconId === 'blogs') {
-      navigate('/blogs')
-    } else if (iconId === 'projects') {
-      navigate('/projects')
-    } else if (iconId === 'achievements') {
-      navigate('/achievements')
-    }
-  }
-
   // Render full content with icons for next page
   const renderHeroContent = () => (
-    <div className="hero-content">
-      <div className="hero-title" id="portfolio-title">
-        <span className="hero-title-line">THE</span>
-        <span className="hero-title-line">DIGITAL</span>
-        <span className="hero-title-line">VISIONARY</span>
-      </div>
-
-      <div className="floating-icons">
-        <div className="floating-icons-inner">
-          {floatingIcons.map((icon, index) => {
-            const IconGraphic = icon.Icon
-            const angle = index * (360 / floatingIcons.length)
-            const duration = floatDurations[index % floatDurations.length]
-            return (
-              <div
-                key={icon.id}
-                className="floating-icon"
-                style={{
-                  '--angle': `${angle}deg`,
-                  '--float-duration': duration
-                }}
-                aria-label={icon.label}
-                onClick={() => handleIconClick(icon.id)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault()
-                    handleIconClick(icon.id)
-                  }
-                }}
-              >
-                <div className="icon-symbol">
-                  <IconGraphic
-                    className="icon-graphic"
-                    strokeWidth={2.5}
-                    color="#ffffff"
-                    size={32}
-                  />
-                </div>
-                <span className="icon-label">{icon.label}</span>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </div>
+    <OrbitalIcons />
   )
 
   // Show next page

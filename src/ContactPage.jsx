@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ContactPage.css'
 import CursorEffect from './CursorEffect'
 import { Mail, Github, Linkedin, Send, ArrowLeft } from 'lucide-react'
 
+// EmailJS Configuration
+const SERVICE_ID = "service_fbsg0us";
+const TEMPLATE_ID = "template_sw35i93";
+const PUBLIC_KEY = "JbrgyYRW7ndTbpph8";
+
 const ContactPage = () => {
   const navigate = useNavigate()
+  const form = useRef()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   })
+  const [isSending, setIsSending] = useState(false)
+  const [statusMessage, setStatusMessage] = useState('')
 
   const handleChange = (e) => {
     setFormData({
@@ -19,12 +27,27 @@ const ContactPage = () => {
     })
   }
 
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    // Reset form
-    setFormData({ name: '', email: '', message: '' })
+    setIsSending(true)
+    setStatusMessage('Sending...')
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then(
+        () => {
+          setStatusMessage('Message sent successfully!')
+          setIsSending(false)
+          form.current.reset()
+          setFormData({ name: '', email: '', message: '' })
+          setTimeout(() => setStatusMessage(''), 5000)
+        },
+        (error) => {
+          setStatusMessage('Failed to send message. Please try again.')
+          setIsSending(false)
+          console.error('EmailJS error:', error)
+          setTimeout(() => setStatusMessage(''), 5000)
+        }
+      )
   }
 
   return (
@@ -178,7 +201,7 @@ const ContactPage = () => {
 
         {/* RIGHT SECTION - FORM */}
         <div className="contact-right">
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form ref={form} className="contact-form" onSubmit={sendEmail}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
@@ -218,10 +241,24 @@ const ContactPage = () => {
               />
             </div>
 
-            <button type="submit" className="submit-button">
-              <span>Send Message</span>
-              <Send size={18} strokeWidth={2} />
+            <button type="submit" className="submit-button" disabled={isSending}>
+              {isSending ? (
+                <>
+                  <span>Sending...</span>
+                  <Send size={18} strokeWidth={2} className="sending-icon" />
+                </>
+              ) : (
+                <>
+                  <span>Send Message</span>
+                  <Send size={18} strokeWidth={2} />
+                </>
+              )}
             </button>
+            {statusMessage && (
+              <div className={`status-message ${statusMessage.includes('success') ? 'success' : 'error'}`}>
+                {statusMessage}
+              </div>
+            )}
           </form>
         </div>
       </div>
