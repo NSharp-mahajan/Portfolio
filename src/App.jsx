@@ -3,9 +3,10 @@ import LandingPage from './LandingPage'
 import ContactPage from './ContactPage'
 import AboutPage from './AboutPage'
 import ResumePage from './ResumePage'
-import FreelanceServicesPage from './FreelanceServicesPage'
 import ProjectsPage from './ProjectsPage'
 import AchievementsPage from './AchievementsPage'
+import TechBlogs from './TechBlogs'
+import BlogArticle from './BlogArticle'
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/resume" element={<ResumePage />} />
-        <Route path="/freelance" element={<FreelanceServicesPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/achievements" element={<AchievementsPage />} />
+        <Route path="/blogs" element={<TechBlogs />} />
+        <Route path="/blogs/:slug" element={<BlogArticle />} />
       </Routes>
     </BrowserRouter>
   )

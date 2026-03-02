@@ -9,7 +9,8 @@ import {
   BriefcaseBusiness,
   Trophy,
   Sparkles,
-  FileText
+  FileText,
+  BookOpen
 } from 'lucide-react'
 
 import image1 from './assets/images/image1.jpg'
@@ -36,13 +37,13 @@ const collageImages = [
 const floatingIcons = [
   { id: 'contact', label: 'Contact', Icon: Mail },
   { id: 'projects', label: 'Projects', Icon: Folder },
-  { id: 'freelance', label: 'Freelance Service', Icon: BriefcaseBusiness },
+  { id: 'blogs', label: 'Tech Blogs', Icon: BookOpen },
   { id: 'achievements', label: 'Achievements', Icon: Trophy },
   { id: 'resume', label: 'Resume', Icon: FileText },
   { id: 'about', label: 'About Me', Icon: UserRound }
 ]
 
-const floatDurations = ['4s', '5s', '6s', '4.5s', '5.5s', '4.2s', '5.2s']
+const floatDurations = ['4s', '5s', '6s', '4.5s', '5.5s', '4.2s']
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -96,8 +97,8 @@ const LandingPage = () => {
       navigate('/about')
     } else if (iconId === 'resume') {
       navigate('/resume')
-    } else if (iconId === 'freelance') {
-      navigate('/freelance')
+    } else if (iconId === 'blogs') {
+      navigate('/blogs')
     } else if (iconId === 'projects') {
       navigate('/projects')
     } else if (iconId === 'achievements') {
