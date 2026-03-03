@@ -32,10 +32,19 @@ const LandingPage = () => {
   const [showNextPage, setShowNextPage] = useState(false)
 
   useEffect(() => {
-    // Check if user has seen splash screen before
-    const hasSeenSplash = localStorage.getItem('hasSeenSplash')
+    // Check if user has seen splash screen in this session
+    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash')
     
-    if (!hasSeenSplash) {
+    // Debug logging
+    console.log('🔍 Loading Debug:')
+    console.log('hasSeenSplash:', hasSeenSplash)
+    console.log('shouldShowLoading:', !hasSeenSplash)
+    
+    // Show loading only if user hasn't seen splash screen in this session
+    const shouldShowLoading = !hasSeenSplash
+    
+    if (shouldShowLoading) {
+      console.log('✅ Showing loading grid...')
       // Show loading bar after landing page is visible (500ms delay)
       const loadingTimer = setTimeout(() => {
         setShowLoading(true)
@@ -43,6 +52,7 @@ const LandingPage = () => {
 
       return () => clearTimeout(loadingTimer)
     } else {
+      console.log('⏭️ Skipping loading, going to next page...')
       // Skip loading and go directly to next page
       setShowNextPage(true)
     }
@@ -57,8 +67,8 @@ const LandingPage = () => {
             clearInterval(interval)
             setTimeout(() => {
               setShowNextPage(true)
-              // Mark splash screen as seen
-              localStorage.setItem('hasSeenSplash', 'true')
+              // Mark splash screen as seen for this session
+              sessionStorage.setItem('hasSeenSplash', 'true')
             }, 300)
             return 100
           }
@@ -97,8 +107,6 @@ const LandingPage = () => {
             </div>
             <div className="profile-tooltip">Natansh Mahajan</div>
           </div>
-          
-          {/* Blank page - ready for you to build one by one */}
         </div>
       </>
     )
@@ -129,6 +137,13 @@ const LandingPage = () => {
           <div className="hero-overlay" />
         </div>
         <div className="hero-veil" aria-hidden="true" />
+        
+        {/* Name Display in Center */}
+        <div className="hero-content">
+          <h1 className="hero-title">
+            <span className="name-full" data-text="Natansh Mahajan">Natansh Mahajan</span>
+          </h1>
+        </div>
       </section>
 
       <div className="profile-badge">

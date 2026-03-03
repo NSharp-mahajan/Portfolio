@@ -11,26 +11,32 @@ const AchievementsPage = () => {
   const achievements = [
     {
       image: "/assets/ach1.jpg",
+      title: "National Hackathon Winner",
       description: "National Hackathon Winner, Organized by HackWithIndia at Khalsa College Amritsar"
     },
     {
       image: "/assets/ach2.jpeg",
+      title: "Hackground Finalist",
       description: "Among top 20 finalists of Hackground 2025 at Thoughtworks office, gurugram"
     },
     {
       image: "/assets/ach3.jpeg",
+      title: "Microsoft Finalist",
       description: "Finalists at Microsoft office gurgoan organized by HackWithIndia"
     },
     {
       image: "/assets/ach4.jpg",
+      title: "Technical Head",
       description: "Appointed as Technical Head at DTS, Chitkara University"
     },
     {
       image: "/assets/ach5.jpeg",
+      title: "Innox Runner Up",
       description: "Runners Up at Innox 2025, Organized by Coding Ninjas - Chitkara University"
     },
     {
       image: "/assets/ach6.png",
+      title: "TechPrenuer Participant",
       description: "Among top 30 teams to display project at TechPrenuer - IIT JAMMU"
     }
   ]
@@ -96,8 +102,6 @@ const AchievementsPage = () => {
                         src={achievement.image} 
                         alt={achievement.title}
                         className="achievement-image"
-                        // Replace this image with your achievement photo
-                        // Location: /public/images/
                       />
                     </div>
                     

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&family=Dancing+Script:wght@700&display=swap');
 
 :root {
   color-scheme: dark;
@@ -143,25 +143,51 @@
   pointer-events: none;
 }
 
-.hero-title {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cinzel Decorative', 'Cinzel', serif;
-  text-transform: uppercase;
-  letter-spacing: 5px;
+.name-full {
+  font-family: 'Dancing Script', 'Brush Script MT', cursive;
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
-  color: transparent;
-  background: linear-gradient(120deg, #fff4cc 0%, #fcd86c 45%, #f5b93c 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #fcd86c 50%, #fff4cc 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  text-shadow: 0 0 4px rgba(255, 215, 0, 0.3),
-    0 0 8px rgba(255, 215, 0, 0.2);
+  color: transparent;
+  text-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.3),
+    0 0 20px rgba(255, 215, 0, 0.2);
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
+  letter-spacing: 0.05em;
+  position: relative;
+  display: inline-block;
+  
+  /* Curtain opening animation */
   opacity: 0;
-  animation: heroTitleFade 1.5s ease forwards 0.2s, titleGlow 6s ease-in-out infinite 1.6s;
+  animation: curtainOpen 2s ease-out forwards 0.5s;
+  
+  /* Split text for curtain effect */
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    overflow: hidden;
+  }
+  
+  &::before {
+    clip-path: inset(0 50% 0 0);
+    animation: curtainLeft 2s ease-out forwards 0.5s;
+  }
+  
+  &::after {
+    clip-path: inset(0 0 0 50%);
+    animation: curtainRight 2s ease-out forwards 0.5s;
+  }
 }
 
 .hero-title-line {
@@ -931,6 +957,37 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes curtainOpen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes curtainLeft {
+  from {
+    clip-path: inset(0 50% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes curtainRight {
+  from {
+    clip-path: inset(0 0 0 50%);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
   }
 }
 

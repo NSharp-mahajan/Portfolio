@@ -18,7 +18,6 @@ import hackathonsImage from './assets/images/image2.jpg'
 import projectImage from './assets/images/project.png'
 import msFinaleImage from './assets/images/off.jpeg'
 import techHeadImage from './assets/images/image7.jpg'
-import ach5Image from './assets/images/ach5.jpeg'
 import moreMilestonesImage from './assets/images/image8.jpg'
 import { ArrowLeft, Code, Database, Globe, Smartphone, Palette, Zap, Rocket, Star, Target, GitBranch } from 'lucide-react'
 
@@ -235,21 +234,21 @@ const AboutPage = () => {
       title: 'Technical Head — Design Thinking Society',
       date: 'Leadership',
       description: 'Guiding teams and shaping innovative ideas.',
-      image: techHeadImage
+      image: '/src/assets/images/image4.jpg'
     },
     {
       id: 'Coding Ninjas',
       title: 'Second Hackathon Win',
       date: 'Feb-2026',
       description: 'Won Second Hackathon',
-      image: ach5Image
+      image: '/assets/ach5.jpeg'
     },
     {
       id: 'more-coming',
       title: 'More milestones loading…',
       date: '',
       description: 'This is just the beginning of the journey.',
-      image: moreMilestonesImage,
+      image: '/src/assets/images/projects.png',
       isFinal: true
     }
   ]
