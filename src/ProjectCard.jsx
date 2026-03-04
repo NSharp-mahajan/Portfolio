@@ -58,8 +58,9 @@ const ProjectCard = ({ project }) => {
             src={currentImage} 
             alt={project.title}
             className="project-image"
+            loading="lazy"
             onError={(e) => {
-              e.target.src = '/assets/images/image1.jpg'
+              e.target.src = '/src/assets/images/image1.jpg'
             }}
           />
           

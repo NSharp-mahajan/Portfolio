@@ -5,8 +5,8 @@ import CursorEffect from './CursorEffect'
 import { ArrowLeft, BookOpen } from 'lucide-react'
 import BlogCard from './components/BlogCard'
 
-// Replace this with the Tech Blogs background image
-// import blogsBackground from './assets/images/blogs-bg.jpg'
+// Import images properly
+import image5 from './assets/images/image5.jpg'
 
 const TechBlogs = () => {
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ const TechBlogs = () => {
       title: "Building CyberCop: Turning a Personal Scam Experience into a Cybersecurity Platform",
       date: "March 2025",
       readTime: "8 min read",
-      image: "/assets/blog1.png", // Replace with CyberCop project blog image
+      image: "/assets/blog1.png", // Use public path
       tags: ["Cybersecurity", "AI", "Web Development", "Fraud Detection"],
       preview: "Cyber fraud is increasing every day, yet most platforms only spread awareness without actually helping victims take action. In this article, I share how a personal scam experience led me to build CyberCop — an AI-powered cybersecurity platform designed to detect scams, educate users, and help them respond quickly to digital fraud.",
       content: "Full article content would go here..."
@@ -30,9 +30,9 @@ const TechBlogs = () => {
       title: "The Rise of AI: Jobs Lost or Jobs Transformed?",
       date: "March 2025",
       readTime: "6 min read",
-      image: "/assets/blog2.png", // Replace with AI blog image
+      image: "/assets/blog2.png", // Use public path
       tags: ["AI", "Future", "Technology", "Careers"],
-      preview: "Artificial Intelligence is becoming one of the most talked-about technologies in today's world. From smart assistants to AI tools that write code or analyze data, technology is evolving rapidly. Because of this, many people—especially students entering the job market—are wondering whether AI will replace jobs or create new opportunities.",
+      preview: "Artificial Intelligence is becoming one of most talked-about technologies in today's world. From smart assistants to AI tools that write code or analyze data, technology is evolving rapidly. Because of this, many people—especially students entering the job market—are wondering whether AI will replace jobs or create new opportunities.",
       content: `Artificial Intelligence is becoming one of the most talked-about technologies in today's world. From smart assistants to AI tools that write code or analyze data, technology is evolving rapidly. Because of this, many people—especially students entering the job market—are wondering whether AI will replace jobs or create new opportunities.
 
 What Is Happening Currently
@@ -112,13 +112,13 @@ Hackathons are more than competitions; they are intense learning experiences. Th
         <section
           className="blogs-hero"
           style={{
-            backgroundImage: `url('/src/assets/images/blogs-bg.jpg')`
+            backgroundImage: `url('/assets/blog-back.png')`
           }}
         >
           <div className="hero-content-wrapper">
             <div className="author-header">
               <div className="author-avatar">
-                <img src="/src/assets/images/image5.jpg" alt="Natansh Mahajan" />
+                <img src={image5} alt="Natansh Mahajan" />
               </div>
               <h1 className="hero-title">
                 <span className="title-line">Natansh</span>
