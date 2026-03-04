@@ -62,32 +62,18 @@ const GithubMetricsSection = () => {
             percentage: ((count / reposData.length) * 100).toFixed(1)
           }))
         
-        // Fetch contribution count using GraphQL API for accuracy
-        const contributionQuery = `
-          query {
-            user(login: "${username}") {
-              contributionsCollection {
-                contributionCalendar {
-                  totalContributions
-                }
-              }
-            }
-          }
-        `
-        
-        const contributionResponse = await fetch('https://api.github.com/graphql', {
-          method: 'POST',
-          headers: {
-            'Authorization': `bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ query: contributionQuery })
-        })
-        
+        // Fetch contribution count using REST API (no authentication required)
         let totalContributions = 0
-        if (contributionResponse.ok) {
-          const contributionData = await contributionResponse.json()
-          totalContributions = contributionData.data?.user?.contributionsCollection?.contributionCalendar?.totalContributions || 0
+        try {
+          const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=100`)
+          if (eventsResponse.ok) {
+            const events = await eventsResponse.json()
+            // Count only push events as contributions
+            totalContributions = events.filter(event => event.type === 'PushEvent').length
+          }
+        } catch (error) {
+          console.log('Could not fetch events, using fallback')
+          totalContributions = 0
         }
         
         // Fetch pull requests using search API (more reliable)
