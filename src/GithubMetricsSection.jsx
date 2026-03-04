@@ -62,53 +62,55 @@ const GithubMetricsSection = () => {
             percentage: ((count / reposData.length) * 100).toFixed(1)
           }))
         
-        // Fetch contribution count using GitHub REST API with proper endpoint for accuracy
+        // Fetch contribution count using GitHub REST API with comprehensive history
         let totalContributions = 0
         try {
-          // Try multiple approaches for contribution counting
-          let allContributions = []
+          let allEvents = []
+          let page = 1
+          const perPage = 100
+          let hasMoreEvents = true
           
-          // Method 1: Try contribution events API
-          try {
-            const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public?per_page=300`)
-            if (eventsResponse.ok) {
-              const events = await eventsResponse.json()
-              // Count all contribution types
-              const contributionEvents = events.filter(event => 
-                ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CreateEvent'].includes(event.type)
-              )
-              allContributions = allContributions.concat(contributionEvents)
-            }
-          } catch (e) {
-            console.log('Events API failed, trying next method')
-          }
-          
-          // Method 2: Try regular events if public fails
-          if (allContributions.length === 0) {
+          // Fetch ALL pages to get complete GitHub history
+          while (hasMoreEvents) { // No limit - fetch entire history
             try {
-              const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=300`)
+              const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=${perPage}&page=${page}`)
               if (eventsResponse.ok) {
                 const events = await eventsResponse.json()
-                const contributionEvents = events.filter(event => 
-                  ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CreateEvent'].includes(event.type)
-                )
-                allContributions = allContributions.concat(contributionEvents)
+                if (events.length === 0) {
+                  hasMoreEvents = false
+                  console.log(`Finished fetching after ${page-1} pages, total events: ${allEvents.length}`)
+                } else {
+                  allEvents = allEvents.concat(events)
+                  page++
+                  
+                  // Log progress for debugging
+                  if (page % 10 === 0) {
+                    console.log(`Fetched ${page-1} pages, ${allEvents.length} events so far...`)
+                  }
+                }
+              } else {
+                hasMoreEvents = false
+                console.log('API response not ok, stopping pagination')
               }
             } catch (e) {
-              console.log('Regular events API failed')
+              console.log(`Page ${page} failed, continuing...`)
+              page++ // Continue to next page even if one fails
             }
           }
           
-          totalContributions = allContributions.length
+          // Count all contribution types from ALL events
+          const contributionEvents = allEvents.filter(event => 
+            ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CreateEvent', 
+             'PullRequestReviewCommentEvent', 'IssueCommentEvent', 'CommitCommentEvent',
+             'ReleaseEvent', 'DeleteEvent', 'MemberEvent', 'PublicEvent'].includes(event.type)
+          )
           
-          // If still 0, use a reasonable fallback based on repos
-          if (totalContributions === 0) {
-            totalContributions = Math.max(100, reposData.length * 10) // Reasonable estimate
-          }
+          totalContributions = contributionEvents.length
+          console.log(`Total contribution events found: ${totalContributions} from ${allEvents.length} total events`)
           
         } catch (error) {
           console.log('Could not fetch contributions, using fallback')
-          totalContributions = Math.max(100, reposData.length * 10)
+          totalContributions = Math.max(500, reposData.length * 20) // Higher fallback
         }
         
         // Fetch pull requests using search API (more reliable)
