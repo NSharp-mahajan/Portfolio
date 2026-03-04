@@ -10,23 +10,6 @@
   box-sizing: border-box;
 }
 
-.loading-bar-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: rgba(255, 255, 255, 0.1);
-  z-index: 10000;
-}
-
-.loading-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #b8943f, #d4a853, #b8943f);
-  transition: width 0.1s linear;
-  box-shadow: 0 0 10px rgba(184, 148, 63, 0.5);
-}
-
 .landing-page {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
