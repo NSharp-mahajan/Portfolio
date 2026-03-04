@@ -116,10 +116,15 @@ Hackathons are more than competitions; they are intense learning experiences. Th
           }}
         >
           <div className="hero-content-wrapper">
-            <h1 className="hero-title">
-              <span className="title-line">Tech Insights</span>
-              <span className="title-line">& Blogs</span>
-            </h1>
+            <div className="author-header">
+              <div className="author-avatar">
+                <img src="/src/assets/images/image5.jpg" alt="Natansh Mahajan" />
+              </div>
+              <h1 className="hero-title">
+                <span className="title-line">Natansh</span>
+                <span className="title-line">Mahajan</span>
+              </h1>
+            </div>
 
             <p className="hero-subtitle">
               A collection of my learnings, technical breakdowns, and experiences 
