@@ -18,7 +18,7 @@ const TechBlogs = () => {
       title: "Building CyberCop: Turning a Personal Scam Experience into a Cybersecurity Platform",
       date: "March 2025",
       readTime: "8 min read",
-      image: "/assets/blog1.png", // Use public path
+      image: "/assets/blog1.webp", // Use public path
       tags: ["Cybersecurity", "AI", "Web Development", "Fraud Detection"],
       preview: "Cyber fraud is increasing every day, yet most platforms only spread awareness without actually helping victims take action. In this article, I share how a personal scam experience led me to build CyberCop — an AI-powered cybersecurity platform designed to detect scams, educate users, and help them respond quickly to digital fraud.",
       content: "Full article content would go here..."
@@ -29,7 +29,7 @@ const TechBlogs = () => {
       title: "The Rise of AI: Jobs Lost or Jobs Transformed?",
       date: "March 2025",
       readTime: "6 min read",
-      image: "/assets/blog2.png", // Use public path
+      image: "/assets/blog2.jpg", // Use public path
       tags: ["AI", "Future", "Technology", "Careers"],
       preview: "Artificial Intelligence is becoming one of most talked-about technologies in today's world. From smart assistants to AI tools that write code or analyze data, technology is evolving rapidly. Because of this, many people—especially students entering the job market—are wondering whether AI will replace jobs or create new opportunities.",
       content: `Artificial Intelligence is becoming one of the most talked-about technologies in today's world. From smart assistants to AI tools that write code or analyze data, technology is evolving rapidly. Because of this, many people—especially students entering the job market—are wondering whether AI will replace jobs or create new opportunities.
@@ -52,7 +52,7 @@ AI is not simply taking jobs—it is changing the nature of work. The future wil
       title: "From Idea to Real Product: The Hidden Challenges No One Talks About in Hackathons",
       date: "March 2025",
       readTime: "7 min read",
-      image: "/assets/blog3.png", // Replace with hackathon blog image
+      image: "/assets/blog3.webp", // Replace with hackathon blog image
       tags: ["Hackathons", "Development", "Teamwork", "Problem Solving"],
       preview: "Hackathons are exciting environments where students turn ideas into working prototypes within a very short time. They encourage creativity, teamwork, and fast problem solving. While many people see the final demo or winning projects, very few talk about the real challenges teams face while building something from scratch under strict time pressure.",
       content: `From Idea to Real Product: The Hidden Challenges No One Talks About in Hackathons
