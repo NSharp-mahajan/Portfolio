@@ -18,7 +18,7 @@ const GithubMetricsSection = () => {
         setError(null)
         
         // Use environment variables
-        const username = import.meta.env.VITE_GITHUB_USERNAME || 'natansh-mahajan'
+        const username = import.meta.env.VITE_GITHUB_USERNAME || 'NSharp-mahajan'
         const token = import.meta.env.VITE_GITHUB_TOKEN
         
         // Set up headers with authentication token
