@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './LandingPage.css'
 import OrbitalIcons from './components/OrbitalIcons'
-import ProfessionalLoader from './components/ProfessionalLoader'
 
 import image1 from './assets/images/image1.jpg'
 import image2 from './assets/images/image2.jpg'
@@ -28,6 +27,7 @@ const collageImages = [
 const LandingPage = () => {
   const navigate = useNavigate()
   const [showLoading, setShowLoading] = useState(false)
+  const [progress, setProgress] = useState(0)
   const [showNextPage, setShowNextPage] = useState(false)
 
   useEffect(() => {
@@ -58,15 +58,24 @@ const LandingPage = () => {
   }, [])
 
   useEffect(() => {
-    // Show professional loader for 2.5 seconds then transition
+    // Start progress when loading bar appears
     if (showLoading) {
-      const timer = setTimeout(() => {
-        setShowNextPage(true)
-        // Mark splash screen as seen for this session
-        sessionStorage.setItem('hasSeenSplash', 'true')
-      }, 2500)
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(interval)
+            setTimeout(() => {
+              setShowNextPage(true)
+              // Mark splash screen as seen for this session
+              sessionStorage.setItem('hasSeenSplash', 'true')
+            }, 300)
+            return 100
+          }
+          return prev + 2.5
+        })
+      }, 100)
 
-      return () => clearTimeout(timer)
+      return () => clearInterval(interval)
     }
   }, [showLoading])
 
@@ -104,8 +113,12 @@ const LandingPage = () => {
   return (
     <>
       <div className="landing-page">
-      {/* Professional loader appears on the landing page */}
-      {showLoading && <ProfessionalLoader />}
+      {/* Loading bar appears on landing page */}
+      {showLoading && (
+        <div className="loading-bar-container">
+          <div className="loading-bar" style={{ width: `${progress}%` }}></div>
+        </div>
+      )}
 
       <section className="hero">
         <div className="hero-background" aria-hidden="true">
