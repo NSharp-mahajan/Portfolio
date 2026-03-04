@@ -62,31 +62,16 @@ const GithubMetricsSection = () => {
             percentage: ((count / reposData.length) * 100).toFixed(1)
           }))
         
-        // Fetch contribution count using REST API with pagination for accuracy
+        // Fetch contribution count using GitHub Contributions API for accuracy
         let totalContributions = 0
         try {
-          let page = 1
-          const perPage = 100
-          let hasMoreEvents = true
-          
-          while (hasMoreEvents && page <= 10) { // Limit to 10 pages (1000 events max)
-            const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=${perPage}&page=${page}`)
-            if (eventsResponse.ok) {
-              const events = await eventsResponse.json()
-              if (events.length === 0) {
-                hasMoreEvents = false
-              } else {
-                // Count only push events as contributions
-                const pageContributions = events.filter(event => event.type === 'PushEvent').length
-                totalContributions += pageContributions
-                page++
-              }
-            } else {
-              hasMoreEvents = false
-            }
+          const contributionsResponse = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}`)
+          if (contributionsResponse.ok) {
+            const contributionsData = await contributionsResponse.json()
+            totalContributions = contributionsData.total || 0
           }
         } catch (error) {
-          console.log('Could not fetch events, using fallback')
+          console.log('Could not fetch contributions, using fallback')
           totalContributions = 0
         }
         
