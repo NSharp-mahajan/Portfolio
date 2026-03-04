@@ -62,14 +62,28 @@ const GithubMetricsSection = () => {
             percentage: ((count / reposData.length) * 100).toFixed(1)
           }))
         
-        // Fetch contribution count using REST API (no authentication required)
+        // Fetch contribution count using REST API with pagination for accuracy
         let totalContributions = 0
         try {
-          const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=100`)
-          if (eventsResponse.ok) {
-            const events = await eventsResponse.json()
-            // Count only push events as contributions
-            totalContributions = events.filter(event => event.type === 'PushEvent').length
+          let page = 1
+          const perPage = 100
+          let hasMoreEvents = true
+          
+          while (hasMoreEvents && page <= 10) { // Limit to 10 pages (1000 events max)
+            const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=${perPage}&page=${page}`)
+            if (eventsResponse.ok) {
+              const events = await eventsResponse.json()
+              if (events.length === 0) {
+                hasMoreEvents = false
+              } else {
+                // Count only push events as contributions
+                const pageContributions = events.filter(event => event.type === 'PushEvent').length
+                totalContributions += pageContributions
+                page++
+              }
+            } else {
+              hasMoreEvents = false
+            }
           }
         } catch (error) {
           console.log('Could not fetch events, using fallback')
