@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import './BlogArticle.css'
-import CursorEffect from './CursorEffect'
 import { ArrowLeft, Calendar, Clock } from 'lucide-react'
 
 const BlogArticle = () => {
@@ -166,7 +165,6 @@ The most successful teams focus on building a working core product instead of tr
 
   return (
     <>
-      <CursorEffect />
       <button
         className="back-button"
         onClick={() => navigate('/blogs')}

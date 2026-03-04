@@ -1,12 +1,13 @@
 /* ============================================
-   CLEAN CUSTOM CURSOR
+   CLEAN CUSTOM CURSOR - DISABLED
    ============================================ */
 
-@media (hover: hover) and (pointer: fine) {
+/* Custom cursor disabled - using normal browser cursor */
+/* @media (hover: hover) and (pointer: fine) {
   * {
     cursor: none !important;
   }
-}
+} */
 
 .custom-cursor {
   position: fixed;
@@ -40,6 +41,8 @@
     0 0 12px rgba(255, 217, 94, 0.18);
 }
 
+/* Custom cursor disabled - using normal browser cursor */
+/*
 @media (hover: hover) and (pointer: fine) {
   .custom-cursor {
     display: block;
@@ -56,4 +59,5 @@
     display: none !important;
   }
 }
+*/
 

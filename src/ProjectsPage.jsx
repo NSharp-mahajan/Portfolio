@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ProjectsPage.css'
-import CursorEffect from './CursorEffect'
 import ProjectGrid from './ProjectGrid'
 import { projects, categories } from './data/projects'
 import { ArrowLeft } from 'lucide-react'
@@ -23,7 +22,6 @@ const ProjectsPage = () => {
 
   return (
     <>
-      <CursorEffect />
       <div className="projects-page">
         <button
           className="back-button"

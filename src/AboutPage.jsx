@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './AboutPage.css'
 import './GithubMetricsSection.css'
 import './SkillsSection.css'
-import CursorEffect from './CursorEffect'
 import GithubMetricsSection from './GithubMetricsSection'
 import SkillsSection from './SkillsSection'
 import aboutBackground from './assets/images/About.png'
@@ -255,7 +254,6 @@ const AboutPage = () => {
 
   return (
     <>
-      <CursorEffect />
       <button
         className="back-button"
         onClick={() => navigate('/')}

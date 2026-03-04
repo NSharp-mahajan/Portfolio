@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './AchievementsPage.css'
-import CursorEffect from './CursorEffect'
 import { Trophy, ArrowLeft } from 'lucide-react'
 
 const AchievementsPage = () => {
@@ -43,7 +42,6 @@ const AchievementsPage = () => {
 
   return (
     <>
-      <CursorEffect />
       <button 
         className="back-button"
         onClick={() => navigate('/')}

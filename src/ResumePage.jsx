@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ResumePage.css'
-import CursorEffect from './CursorEffect'
 import { ArrowLeft, Download, Loader2 } from 'lucide-react'
 
 const ResumePage = () => {
@@ -39,7 +38,6 @@ const ResumePage = () => {
 
   return (
     <>
-      <CursorEffect />
       <button
         className="resume-back-button"
         onClick={() => navigate('/')}

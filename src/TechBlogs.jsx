@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './TechBlogs.css'
-import CursorEffect from './CursorEffect'
 import { ArrowLeft, BookOpen } from 'lucide-react'
 import BlogCard from './components/BlogCard'
 
@@ -81,7 +80,6 @@ Hackathons are more than competitions; they are intense learning experiences. Th
 
   return (
     <>
-      <CursorEffect />
       <button
         className="back-button"
         onClick={() => navigate('/')}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './LandingPage.css'
-import CursorEffect from './CursorEffect'
 import OrbitalIcons from './components/OrbitalIcons'
 
 import image1 from './assets/images/image1.jpg'
@@ -89,7 +88,6 @@ const LandingPage = () => {
   if (showNextPage) {
     return (
       <>
-        <CursorEffect />
         <div 
           className="next-page"
           style={{
@@ -114,7 +112,6 @@ const LandingPage = () => {
 
   return (
     <>
-      <CursorEffect />
       <div className="landing-page">
       {/* Loading bar appears on the landing page */}
       {showLoading && (

@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './ContactPage.css'
-import CursorEffect from './CursorEffect'
 import { Mail, Github, Linkedin, Send, ArrowLeft } from 'lucide-react'
 
 // EmailJS Configuration
@@ -52,7 +51,6 @@ const ContactPage = () => {
 
   return (
     <>
-      <CursorEffect />
       <button 
         className="back-button"
         onClick={() => navigate('/')}
