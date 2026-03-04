@@ -200,12 +200,13 @@
                 const createdDate = new Date(userData.created_at);
                 const accountAge = Math.floor((new Date() - createdDate) / (365.25 * 24 * 60 * 60 * 1000));
                 
-                // Fetch contribution events
-                const contributionEventsResponse = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100`);
+                // Fetch contribution events using correct API endpoint
+                const contributionEventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=100`);
                 let totalContributions = 0;
                 if (contributionEventsResponse.ok) {
                     const events = await contributionEventsResponse.json();
-                    totalContributions = events.length;
+                    // Count only push events as contributions
+                    totalContributions = events.filter(event => event.type === 'PushEvent').length;
                 }
                 
                 const metrics = [

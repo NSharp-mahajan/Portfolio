@@ -6,7 +6,7 @@ const GithubMetricsSection = () => {
     totalContributions: null,
     publicRepos: null,
     totalStars: null,
-    accountAge: null,
+    topLanguages: null,
   })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -44,9 +44,23 @@ const GithubMetricsSection = () => {
         // Calculate metrics
         const totalStars = reposData.reduce((sum, repo) => sum + repo.stargazers_count, 0)
         
-        // Calculate account age in years
-        const createdDate = new Date(userData.created_at)
-        const accountAge = Math.floor((new Date() - createdDate) / (365.25 * 24 * 60 * 60 * 1000))
+        // Calculate programming languages (excluding HTML)
+        const languageMap = new Map()
+        reposData.forEach(repo => {
+          if (repo.language && repo.language !== 'HTML' && repo.language !== 'html') {
+            languageMap.set(repo.language, (languageMap.get(repo.language) || 0) + 1)
+          }
+        })
+        
+        // Get top 5 languages
+        const topLanguages = Array.from(languageMap.entries())
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 5)
+          .map(([lang, count]) => ({
+            language: lang,
+            count: count,
+            percentage: ((count / reposData.length) * 100).toFixed(1)
+          }))
         
         // Fetch contribution count using GraphQL API for accuracy
         const contributionQuery = `
@@ -83,8 +97,7 @@ const GithubMetricsSection = () => {
           totalContributions,
           publicRepos: userData.public_repos,
           totalStars,
-          accountAge,
-         
+          topLanguages,
         })
         
       } catch (err) {
@@ -121,13 +134,12 @@ const GithubMetricsSection = () => {
       helper: 'Across all repos'
     },
     {
-      id: 'age',
-      value: metrics.accountAge,
-      label: 'Years on GitHub',
-      icon: Clock,
-      helper: 'Since ' + new Date().getFullYear() - (metrics.accountAge || 0)
+      id: 'top-language',
+      value: metrics.topLanguages?.[0]?.language || 'N/A',
+      label: 'Top Language',
+      icon: GitBranch,
+      helper: 'Most used language'
     },
-  
   ]
 
   const achievements = [
@@ -156,18 +168,34 @@ const GithubMetricsSection = () => {
       <section className="github-metrics-section">
         <div className="metrics-header">
           <h2 className="metrics-title">Contributions & Achievements</h2>
-          <p className="metrics-subtitle">Live data from GitHub</p>
+          <p className="metrics-subtitle">Loading GitHub data...</p>
         </div>
-        <div className="metrics-grid">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <div key={index} className="metric-card skeleton">
-              <div className="metric-icon skeleton-shimmer"></div>
-              <div className="metric-content">
-                <div className="metric-value skeleton-shimmer"></div>
-                <div className="metric-label skeleton-shimmer"></div>
-              </div>
+        <div className="metrics-container">
+          <div className="metrics-section">
+            <h3 className="section-subtitle skeleton-shimmer">Detailed Metrics</h3>
+            <div className="metrics-grid">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div key={index} className="metric-card skeleton">
+                  <div className="metric-icon skeleton-shimmer"></div>
+                  <div className="metric-content">
+                    <div className="metric-value skeleton-shimmer"></div>
+                    <div className="metric-label skeleton-shimmer"></div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          
+          <div className="metrics-section">
+            <h3 className="section-subtitle skeleton-shimmer">Programming Languages</h3>
+            <div className="languages-grid">
+              {Array.from({ length: 3 }).map((_, index) => (
+                <div key={index} className="language-card skeleton">
+                  <div className="skeleton-shimmer"></div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     )
@@ -198,7 +226,7 @@ const GithubMetricsSection = () => {
       
       <div className="metrics-container">
         <div className="metrics-section">
-          <h3 className="section-subtitle">GitHub Metrics</h3>
+          <h3 className="section-subtitle">Detailed Metrics</h3>
           <div className="metrics-grid">
             {metricCards.map((card) => {
               const IconComponent = card.icon
@@ -217,6 +245,29 @@ const GithubMetricsSection = () => {
                 </div>
               )
             })}
+          </div>
+        </div>
+
+        <div className="languages-section">
+          <h3 className="section-subtitle">Programming Languages</h3>
+          <div className="languages-grid">
+            {metrics.topLanguages?.map((lang, index) => (
+              <div key={index} className="language-card">
+                <div className="language-info">
+                  <div className="language-name">{lang.language}</div>
+                  <div className="language-stats">
+                    <div className="language-count">{lang.count} repos</div>
+                    <div className="language-percentage">{lang.percentage}%</div>
+                  </div>
+                </div>
+                <div className="language-bar">
+                  <div 
+                    className="language-fill" 
+                    style={{ width: `${lang.percentage}%` }}
+                  ></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
