@@ -65,11 +65,25 @@ const GithubMetricsSection = () => {
         // Fetch contribution count using GitHub Contributions API for accurate total
         let totalContributions = 0
         try {
-          const contributionsResponse = await fetch(`https://github-contributions-api.jogruber.de/v4/natansh-mahajan`)
+          const contributionsResponse = await fetch(`https://github-contributions-api.jogruber.de/v4/NSharp-mahajan`)
           if (contributionsResponse.ok) {
             const contributionsData = await contributionsResponse.json()
-            totalContributions = contributionsData.total || 0
             console.log('GitHub Contributions API response:', contributionsData)
+            
+            // Extract total contributions properly based on actual API response structure
+            if (contributionsData && contributionsData.contributions) {
+              // Sum up all contributions from the contributions array
+              totalContributions = contributionsData.contributions.reduce((sum, day) => sum + (day.count || 0), 0)
+              console.log('Calculated total from contributions array:', totalContributions)
+            } else if (contributionsData && typeof contributionsData.total === 'number') {
+              totalContributions = contributionsData.total
+            } else if (contributionsData && contributionsData.years) {
+              // Alternative: sum up yearly contributions
+              totalContributions = Object.values(contributionsData.years).reduce((sum, year) => sum + year.total, 0)
+            } else {
+              console.log('Unexpected API response structure:', contributionsData)
+              totalContributions = 0
+            }
           } else {
             console.log('GitHub Contributions API failed, status:', contributionsResponse.status)
           }
