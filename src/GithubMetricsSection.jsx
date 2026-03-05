@@ -62,55 +62,20 @@ const GithubMetricsSection = () => {
             percentage: ((count / reposData.length) * 100).toFixed(1)
           }))
         
-        // Fetch contribution count using GitHub REST API with comprehensive history
+        // Fetch contribution count using GitHub Contributions API for accurate total
         let totalContributions = 0
         try {
-          let allEvents = []
-          let page = 1
-          const perPage = 100
-          let hasMoreEvents = true
-          
-          // Fetch ALL pages to get complete GitHub history
-          while (hasMoreEvents) { // No limit - fetch entire history
-            try {
-              const eventsResponse = await fetch(`https://api.github.com/users/${username}/events?per_page=${perPage}&page=${page}`)
-              if (eventsResponse.ok) {
-                const events = await eventsResponse.json()
-                if (events.length === 0) {
-                  hasMoreEvents = false
-                  console.log(`Finished fetching after ${page-1} pages, total events: ${allEvents.length}`)
-                } else {
-                  allEvents = allEvents.concat(events)
-                  page++
-                  
-                  // Log progress for debugging
-                  if (page % 10 === 0) {
-                    console.log(`Fetched ${page-1} pages, ${allEvents.length} events so far...`)
-                  }
-                }
-              } else {
-                hasMoreEvents = false
-                console.log('API response not ok, stopping pagination')
-              }
-            } catch (e) {
-              console.log(`Page ${page} failed, continuing...`)
-              page++ // Continue to next page even if one fails
-            }
+          const contributionsResponse = await fetch(`https://github-contributions-api.jogruber.de/v4/natansh-mahajan`)
+          if (contributionsResponse.ok) {
+            const contributionsData = await contributionsResponse.json()
+            totalContributions = contributionsData.total || 0
+            console.log('GitHub Contributions API response:', contributionsData)
+          } else {
+            console.log('GitHub Contributions API failed, status:', contributionsResponse.status)
           }
-          
-          // Count all contribution types from ALL events
-          const contributionEvents = allEvents.filter(event => 
-            ['PushEvent', 'PullRequestEvent', 'IssuesEvent', 'CreateEvent', 
-             'PullRequestReviewCommentEvent', 'IssueCommentEvent', 'CommitCommentEvent',
-             'ReleaseEvent', 'DeleteEvent', 'MemberEvent', 'PublicEvent'].includes(event.type)
-          )
-          
-          totalContributions = contributionEvents.length
-          console.log(`Total contribution events found: ${totalContributions} from ${allEvents.length} total events`)
-          
         } catch (error) {
-          console.log('Could not fetch contributions, using fallback')
-          totalContributions = Math.max(500, reposData.length * 20) // Higher fallback
+          console.log('Could not fetch contributions from API, using fallback:', error)
+          totalContributions = Math.max(500, reposData.length * 20)
         }
         
         // Fetch pull requests using search API (more reliable)
