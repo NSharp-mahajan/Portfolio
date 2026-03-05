@@ -16,65 +16,72 @@ const AchievementsPage = lazy(() => import('./AchievementsPage'))
 const TechBlogs = lazy(() => import('./TechBlogs'))
 const BlogArticle = lazy(() => import('./BlogArticle'))
 
-function App() {
+// Analytics wrapper component to ensure router context
+function AppWithAnalytics() {
   const { trackEvent } = useAnalytics()
 
   return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/contact" element={
+        <Suspense fallback={<LoadingFallback />}>
+          <PageTransition>
+            <ContactPage />
+          </PageTransition>
+        </Suspense>
+      } />
+      <Route path="/about" element={
+        <Suspense fallback={<LoadingFallback />}>
+          <PageTransition>
+            <AboutPage />
+          </PageTransition>
+        </Suspense>
+      } />
+      <Route path="/resume" element={
+        <Suspense fallback={<LoadingFallback />}>
+          <PageTransition>
+            <ResumePage />
+          </PageTransition>
+        </Suspense>
+      } />
+      <Route path="/projects" element={
+        <Suspense fallback={<LoadingFallback />}>
+          <PageTransition>
+            <ProjectsPage />
+          </PageTransition>
+        </Suspense>
+      } />
+      <Route path="/achievements" element={
+        <Suspense fallback={<LoadingFallback />}>
+          <PageTransition>
+            <AchievementsPage />
+          </PageTransition>
+        </Suspense>
+      } />
+      <Route path="/blogs" element={
+        <Suspense fallback={<LoadingFallback />}>
+          <PageTransition>
+            <TechBlogs />
+          </PageTransition>
+        </Suspense>
+      } />
+      <Route path="/blogs/:slug" element={
+        <Suspense fallback={<LoadingFallback />}>
+          <PageTransition>
+            <BlogArticle />
+          </PageTransition>
+        </Suspense>
+      } />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  )
+}
+
+function App() {
+  return (
     <LoadingProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/contact" element={
-            <Suspense fallback={<LoadingFallback />}>
-              <PageTransition>
-                <ContactPage />
-              </PageTransition>
-            </Suspense>
-          } />
-          <Route path="/about" element={
-            <Suspense fallback={<LoadingFallback />}>
-              <PageTransition>
-                <AboutPage />
-              </PageTransition>
-            </Suspense>
-          } />
-          <Route path="/resume" element={
-            <Suspense fallback={<LoadingFallback />}>
-              <PageTransition>
-                <ResumePage />
-              </PageTransition>
-            </Suspense>
-          } />
-          <Route path="/projects" element={
-            <Suspense fallback={<LoadingFallback />}>
-              <PageTransition>
-                <ProjectsPage />
-              </PageTransition>
-            </Suspense>
-          } />
-          <Route path="/achievements" element={
-            <Suspense fallback={<LoadingFallback />}>
-              <PageTransition>
-                <AchievementsPage />
-              </PageTransition>
-            </Suspense>
-          } />
-          <Route path="/blogs" element={
-            <Suspense fallback={<LoadingFallback />}>
-              <PageTransition>
-                <TechBlogs />
-              </PageTransition>
-            </Suspense>
-          } />
-          <Route path="/blogs/:slug" element={
-            <Suspense fallback={<LoadingFallback />}>
-              <PageTransition>
-                <BlogArticle />
-              </PageTransition>
-            </Suspense>
-          } />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <AppWithAnalytics />
       </BrowserRouter>
     </LoadingProvider>
   )
