@@ -34,7 +34,7 @@ const AchievementsPage = () => {
       description: "Runners Up at Innox 2025, Organized by Coding Ninjas - Chitkara University"
     },
     {
-      image: "/assets/ach6.png",
+      image: "/assets/ach6.webp",
       title: "TechPrenuer Participant",
       description: "Among top 30 teams to display project at TechPrenuer - IIT JAMMU"
     }
