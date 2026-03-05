@@ -67,6 +67,35 @@
     </script>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Google Analytics - Production Only -->
+    <script>
+      // Only load analytics in production
+      if (window.location.hostname === 'natanshmahajan.in' || 
+          window.location.hostname === 'www.natanshmahajan.in') {
+        // Google Analytics gtag script
+        (function() {
+          var script = document.createElement('script');
+          script.async = true;
+          // Use environment variable or fallback
+          var measurementId = 'G-8YCFHMGTQ8'; // This will be replaced by build process
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+          document.head.appendChild(script);
+          
+          script.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', measurementId, {
+              page_title: document.title,
+              page_location: window.location.href,
+              send_page_view: true,
+              cookie_flags: 'SameSite=Lax;Secure'
+            });
+          };
+        })();
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

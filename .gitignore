@@ -176,3 +176,14 @@ wrangler.toml.local
 
 # Optional: GitHub Actions (if any local testing)
 .github/workflows/test.yml.local
+
+# Optional: Analytics and Tracking
+analytics-config.js.local
+google-analytics-config.js
+ga-measurement-id.js
+tracking-config.js
+
+# Optional: Environment-specific analytics
+.env.analytics
+.env.analytics.local
+.env.google-analytics

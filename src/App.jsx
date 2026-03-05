@@ -5,6 +5,7 @@ import PageTransition from './components/PageTransition'
 import LoadingFallback from './components/LoadingFallback'
 import LandingPage from './LandingPage'
 import NotFoundPage from './NotFoundPage'
+import { useAnalytics } from './hooks/useAnalytics'
 
 // Lazy load components for better performance
 const ContactPage = lazy(() => import('./ContactPage'))
@@ -16,6 +17,8 @@ const TechBlogs = lazy(() => import('./TechBlogs'))
 const BlogArticle = lazy(() => import('./BlogArticle'))
 
 function App() {
+  const { trackEvent } = useAnalytics()
+
   return (
     <LoadingProvider>
       <BrowserRouter>
