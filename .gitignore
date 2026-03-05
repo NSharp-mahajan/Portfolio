@@ -121,3 +121,58 @@ yarn-error.log*
 *.pem
 *.key
 *.cert
+
+# Optional: AI/ML and Large Files
+*.model
+*.h5
+*.pkl
+*.bin
+*.onnx
+*.tflite
+models/
+datasets/
+
+# Optional: Performance and Monitoring
+*.prof
+*.cpuprofile
+coverage/
+.nyc_output/
+lcov.info
+
+# Optional: Documentation Build
+docs/build/
+docs/.vitepress/dist
+.docusaurus
+
+# Optional: EmailJS and API Keys (if any)
+emailjs-config.js
+api-keys.js
+secrets.js
+
+# Optional: Image Optimization
+*.avif
+*.webp.backup
+optimized-images/
+
+# Optional: Lighthouse and Performance Reports
+lighthouse-reports/
+*.lhr
+performance-reports/
+
+# Optional: Development Tools
+.eslintcache
+.stylelintcache
+.tsbuildinfo
+*.tsbuildinfo
+
+# Optional: Container and Docker
+Dockerfile.local
+docker-compose.local.yml
+.dockerignore
+
+# Optional: Cloudflare Workers
+wrangler.toml.local
+.worker/
+
+# Optional: GitHub Actions (if any local testing)
+.github/workflows/test.yml.local

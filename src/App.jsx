@@ -4,6 +4,7 @@ import { LoadingProvider } from './contexts/LoadingContext'
 import PageTransition from './components/PageTransition'
 import LoadingFallback from './components/LoadingFallback'
 import LandingPage from './LandingPage'
+import NotFoundPage from './NotFoundPage'
 
 // Lazy load components for better performance
 const ContactPage = lazy(() => import('./ContactPage'))
@@ -69,6 +70,7 @@ function App() {
               </PageTransition>
             </Suspense>
           } />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </LoadingProvider>
