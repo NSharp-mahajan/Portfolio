@@ -118,13 +118,76 @@ What started as a frustrating personal experience turned into a platform aimed a
 And this journey showed me how technology can be used not just to build products, but to solve real-world problems.`
       }
     },
+    'rise-of-ai-jobs': {
+      title: "The Rise of AI: Jobs Lost or Jobs Transformed?",
+      date: "March 2025",
+      readTime: "6 min read",
+      image: "/assets/blog2.jpg",
+      content: {
+        introduction: `Artificial Intelligence is becoming one of the most talked-about technologies in today's world. From smart assistants to AI tools that write code or analyze data, technology is evolving rapidly. Because of this, many people—especially students entering the job market—are wondering whether AI will replace jobs or create new opportunities.`,
+        
+        problem: `What Is Happening Currently
+Many companies are now using AI to automate repetitive work like data entry, customer support responses, basic analysis, and content generation. This has created fear that machines might replace human workers. At the same time, companies are also actively hiring people who know how to work with AI tools, not against them.`,
+        
+        vision: `The Real Difference Between People
+The real difference is not AI vs humans—it is adaptable people vs non-adaptable people. Students and professionals who continuously learn new technologies, experiment with AI tools, and build practical skills are becoming more valuable. Those who rely only on traditional methods may find it harder to stay competitive.
+
+The Solution for New Generation
+Instead of fearing AI, a smarter approach is to learn how to use it effectively. Students should focus on problem-solving, creativity, and understanding how AI can improve productivity. Combining domain knowledge with AI tools can make someone far more efficient than either humans or AI alone.`,
+        
+        features: `How AI is Changing Different Industries:
+
+Software Development  
+AI tools can now write code, debug programs, and suggest improvements. This doesn't replace developers but makes them more productive.
+
+Content Creation  
+AI can generate articles, images, and videos. Content creators who learn to use AI tools can produce more and better content.
+
+Data Analysis  
+AI can process large datasets and find patterns that humans might miss. This creates new roles in data science and AI interpretation.
+
+Customer Service  
+AI chatbots handle routine queries, allowing human agents to focus on complex problems that require empathy and creative solutions.`,
+        
+        challenges: `The transition to AI-powered workplaces isn't without challenges:
+
+Skill Gap  
+Many educational systems haven't caught up with AI advancements. Students need to learn new skills that weren't part of traditional curricula.
+
+Job Market Changes  
+Some roles will indeed be automated, but new roles are emerging. AI trainers, prompt engineers, and AI ethics specialists are becoming more common.
+
+Adaptation Pressure  
+Professionals need to continuously update their skills. Those who don't adapt may find it harder to remain competitive.`,
+        
+        learned: `Key Lessons for Students and Professionals:
+
+Focus on Learning How to Use AI  
+Instead of competing with AI, learn to work alongside it. Understanding AI tools is becoming as important as traditional skills.
+
+Develop Human-Centric Skills  
+Creativity, critical thinking, emotional intelligence, and complex problem-solving are skills that AI currently struggles with.
+
+Stay Current  
+Technology evolves quickly. The ability to learn and adapt is becoming more valuable than any specific technical skill.
+
+Combine Domain Knowledge with AI Tools  
+The most valuable professionals will be those who understand their industry deeply AND know how to use AI effectively.`,
+        
+        conclusion: `AI is not simply taking jobs—it is changing the nature of work. The future will favor people who adapt, learn continuously, and use technology to amplify their abilities.
+
+For students and professionals alike, the goal should not be to compete with AI, but to grow alongside it.
+
+The question isn't whether AI will replace jobs, but whether we're prepared to work in a world where AI is a common tool.`
+      }
+    },
     'hackathon-hidden-challenges': {
       title: "From Idea to Real Product: The Hidden Challenges No One Talks About in Hackathons",
       date: "March 2025",
       readTime: "7 min read",
       image: "/assets/blog3.png",
       content: {
-        introduction: `Hackathons are exciting environments where students turn ideas into working prototypes within a very short time. They encourage creativity, teamwork, and fast problem solving. While many people see the final demo or winning projects, very few talk about the real challenges teams face while building something from scratch under strict time pressure.`,
+        introduction: `Hackathons are exciting environments where students turn ideas into working prototypes within a very short time. They encourage creativity, teamwork, and fast problem-solving. While many people see the final demo or winning projects, very few talk about the real challenges teams face while building something from scratch under strict time pressure.`,
         
         problem: `What Is Happening During Hackathons
 In the beginning, every team starts with a strong idea and a clear vision. But as development begins, unexpected problems appear—APIs may not work as expected, integrations fail, bugs appear at the worst moments, and time runs out quickly. Teams often realize that building even a small feature can take much longer than planned.`,
@@ -133,7 +196,7 @@ In the beginning, every team starts with a strong idea and a clear vision. But a
 Hackathons test much more than coding ability. They challenge teams to divide responsibilities, make quick technical decisions, and adapt when something breaks. Sometimes the biggest challenge is not writing code, but deciding what to build and what to drop within limited time.`,
         
         features: `The Solution and Learning
-The most successful teams focus on building a working core product instead of trying to build everything. Prioritizing key features, using the right tools, and collaborating efficiently often matters more than writing perfect code. Hackathons teach students how real-world development works—fast, unpredictable, and full of problem solving.`,
+The most successful teams focus on building a working core product instead of trying to build everything. Prioritizing key features, using the right tools, and collaborating efficiently often matters more than writing perfect code. Hackathons teach students how real-world development works—fast, unpredictable, and full of problem-solving.`,
         
         challenges: `The pressure of time constraints reveals hidden gaps in planning and execution that teams don't face in regular development cycles.`,
         
